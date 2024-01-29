@@ -1,0 +1,80 @@
+/* src/components/MainComponent.css */
+body {
+  background-color: #CCE3DE;
+}
+
+.square {
+  width: 10vw; /* 10% of the viewport width */
+  height: 40vh; /* 20% of the viewport height */
+  background-color: #F6FFF8;
+  margin-top: 0.5vw; 
+  margin-bottom: 0.5vw;/* 2% of the viewport width for margin */
+  margin-left: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #6B9080;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+  border-radius: 1vw; /* 2% of the viewport width for border-radius */
+}
+
+.itemsBg {
+  height: 85vh;
+  width: auto;
+  border-radius: 1.5vw; /* 2% of the viewport width for border-radius */
+  background-color: #EAF4F4;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Allow squares to wrap onto the next line */
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh; /* 2% of the viewport height for margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
+}
+
+/* Display squares in two lines */
+@media (min-width: 768px) {
+  .itemsBg {
+    max-width: 1200px;
+  }
+}
+
+/* ----------contents of each items---------- */
+.pictures {
+  width: 8vw; /* 10% of the viewport width */
+  height: 9vw; /* 10% of the viewport width */
+  background-color: #CCE3DE;
+  border-radius: 3vw; /* 2% of the viewport width for border-radius */
+}
+
+.content {
+  text-align: center;
+}
+
+.name, .number {
+  display: block;
+  margin-top: 1vw; /* 1% of the viewport width for margin */
+}
+
+/* ---------------------next page and previous page buttons-------------------- */
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.prev_page_button {
+  width: 6vw; /* 6% of the viewport width */
+  height: 6vw; /* 6% of the viewport width */
+  background-color: #A4C3B2;
+  border-radius: 50%;
+  margin-left: 2.5vw; /* 2.5% of the viewport width for margin */
+}
+
+.next_page_button {
+  width: 6vw; /* 6% of the viewport width */
+  height: 6vw; /* 6% of the viewport width */
+  background-color: #A4C3B2;
+  border-radius: 50%;
+  margin-right: 2.5vw; /* 2.5% of the viewport width for margin */
+}

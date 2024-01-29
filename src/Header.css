@@ -1,0 +1,52 @@
+/* src/components/Header.css */
+body {
+  margin: 0; /* Remove default margin */
+  font-family: 'courier new', cursive; /* Apply the Baumans font */
+}
+header {
+  background-color: #A4C3B2;
+  color: #597569;
+  padding: 0.5rem; /* Reduce padding for a more compact header */
+  text-align: center;;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  height: 25px; /* Set the height to 25px */
+  font-family: 'courier new', cursive; /* Apply the Baumans font */;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  margin-right: 0px; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+nav li {
+  margin: 0 1rem;
+  padding-right: 50px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #597569;
+}
+
+.hamburger-icon {
+  color: #597569;
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+.profile_image {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 400px;
+}
+h4{
+  margin-right: 200px;
+  letter-spacing: 2px;
+}
