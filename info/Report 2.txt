@@ -1,0 +1,40 @@
+//Choice and connection of the project directly to the database
+
+//Choice of the database
+
+-> Firebase stands to be the best option so far because
+
+	1. Its meant to be a quick development application 
+	2. Scalability over a short period of time is not necessary 
+	3. Complexity is very low when relating to the serverless database
+	4. Easy set-up
+Authentication and Hosting:
+ because the firebase provides Hosting, it’s a very appealing characteristic for the use of it in the project
+
+ Concluding, the choice of firebase over the mongoDB database is essential for the side of being a project website.
+ This means scalability, updates, management as a team, Server hosted and all are not necessary
+ Also, from the point of view of complexity and how intuitive firebase is for the development of an website project model.
+
+ - in case the cases above needed to be added or checked, MongoDB would be the best option, but, with mongoDB, an intermediate server would have to be created and used between the code and the database. 
+
+
+// Creating database account, creation of the Project, Link and conection
+
+
+                        1st contact
+
+ 	- Creating a empty project (NEW) in firebase
+	- Connecting it to the google analytics recommended 
+	- Installing firebase in the project folder by 
+		○ Npm install firebase
+	- Firebase.js file created in the project folder 
+	- Initialized with the project, imported within 
+	- Firebase Config(project settings) connected to the project 
+	- To use firebase in the react app
+		○ Create a Firestore components 
+		○ Adjust your code base on the specific requirements and firebase data structure
+			§ Fetch data from a firestore collection
+			§ Create the collection 
+			§ Organize the data 
+			§ Update the component's state  
+Handling firebase auth and security rules based on the project needs. 

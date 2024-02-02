@@ -24,10 +24,17 @@ npx create-react-app
 For this step the page is working and ready for the next steps, still needs a bit of details to be adjusted, and the space to add the logo 
 after that now,:
  - aiming to connect it to a database, and to start pulling images from the database to the webpage
+
  - to create a way off letting the user add the new item as the picture of the item, and add a name to it 
- - transform the numbers that are being displayed in each item to an editable number, by the user 
+
+ - transform the numbers that are being displayed in each item to a variable ToString number, by the user 
+
  - adjust the webpage to a form that if more than 10 items are added to go to a new page where more items would be located
+
  - add Categories button, divide items into categories and allow user to create, delete, rename categories
+
+ - Create profile and differentiate two types of users, one for admin (MANAGERS) other for users (STAFF)
+        the idea of two different input of users is to have one (the staff one) with many less doing much less than the manager is capable to do.
  
   
-
+//
