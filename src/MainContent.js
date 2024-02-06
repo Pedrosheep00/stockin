@@ -1,6 +1,6 @@
 // src/MainContent.js
 import React from 'react';
-import './MainContent.css';
+import './CSSs/MainContent.css';
 
 const MainComponent = () => {
   const generateSquares = (count) => {

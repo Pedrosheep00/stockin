@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app'; // Change this line
 import 'firebase/compat/auth';
-import './Login.css'; // Import the CSS file for styling
+import './CSSs/Login.css'; // Import the CSS file for styling
 import 'firebase/compat/storage';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';

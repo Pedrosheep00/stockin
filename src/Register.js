@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import './Register.css'; // Import the CSS file for styling
+import './CSSs/Register.css'; // Import the CSS file for styling
 import 'firebase/compat/storage';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
 
