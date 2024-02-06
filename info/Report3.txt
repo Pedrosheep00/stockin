@@ -1,0 +1,43 @@
+//Created a Onclick function to get the overlay to open, when clicking on the burguer icon at the top left-hand corner of the screen 
+
+        -missing the design and to add propper links to it, changing the default ones(so CSS to overlay)
+
+
+//Creating a Login / Register Page, that incorporates the authentication of the Firebase
+
+- first setting up the authentication of the project in firebase 
+- then linkin the firebase to the Login Page
+- creating the Login page 
+- set up the design for the page 
+- organizing the react router Dom, and route, so the app will open in the Login page instead of the Main_Coponent page.
+
+// Finding out about the "Sortly app", 
+        - checking about the similarities of the development of Stokin
+        - difference found in the dashboard,
+                - when the item is running out, according to its frequency of sales, the sign of red colour to (Need re-stock) would come up
+                - when hoover on each item to open an overlay, that has a graphical view of the information of the product, and its movement in and out the company 
+                - thinking about the add of folders as well, apart from the categories, to organize the User experience
+                - Stockin is about Helping with the sales, Sortly about what items are owned by the company on the backstage. usually
+                - Sortly has a limit of items, categories, users connected, while Stokin is about helping business that are entering the market
+
+// Creating LogIn and Register page
+        created login page 
+        reorganized the design of it
+        created credentials and connected the project to a Storage in Firebase project 
+
+        chose image to the front page that's gonna be the face of the Stokin Website 
+        created a Register page from the same design and code of the Register.js and Register.css to Login.js and Login.css
+        after choice of colors
+        linked the buttons to the webpages, Login to Register and Vice Vers
+
+// Connecting the Firebase Authentication to the Project 
+        connecting the register buutton to save the credentials added on the input 
+                - as name, surname, email, and password
+                - connecting the authentication in firebase 
+                - saving the credentials while logged in 
+                - When loggin in the next time, the button "log in" will get the credentials saved on the auth of firebase
+
+
+
+        
+

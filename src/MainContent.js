@@ -1,4 +1,4 @@
-// src/components/MainComponent.js
+// src/MainContent.js
 import React from 'react';
 import './MainContent.css';
 
@@ -23,12 +23,10 @@ const MainComponent = () => {
     <div>
       <div className="button-container">
         <div className="prev_page_button"></div>
-        
-      
-      <div className="itemsBg">
-        {generateSquares(12)}
-      </div>
-      <div className="next_page_button"></div>
+        <div className="itemsBg">
+          {generateSquares(14)}
+        </div>
+        <div className="next_page_button"></div>
       </div>
     </div>
   );
