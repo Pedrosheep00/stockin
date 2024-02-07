@@ -1,0 +1,31 @@
+Implemented changes in the MainContent, organization to make it work.
+
+- deletion of the next page button, and prev page button.
+- reorganization of items, 4 per line, after adding more, creating more lines of products.
+- scrollable effect to go throught the items to the bottom of the page 
+- 
+- Addition of button to add items 
+    - input items: one image, one name(description), and a number (amount)
+
+//Connection to firebase, firestore and Storage
+- creation of a collection in firestore, and connection to the Main Component page
+- edition of the collection to be made automatically when the user input a new item 
+- storage to be connected to the project, so when the images are input they're saved in the database
+
+//Firebase.js file created, for the organization of the project 
+- connection to the firebase in each component of the project by importing and exporting 
+- organization of the design and the colors , according to the whole website 
+- use of the authentication to load the collections according to the user logged in. (company )
+
+//For the next steps 
+- reorganize the overlay on the side of the page, with links to categories page.
+- to open each category with different items, from the firebase list (collection)
+- to give thoughts about what the dashboard will look like 
+- thoughts about what min level of items would be:
+    - how to implement this for the user to choose the min level
+    - to change the colour of the background of the item once the min level is achieved.
+- to change the way the ADD ITEM opens the input fields, to an OVERLAY 
+- to create a OVERLAY for when the item is clicked:
+    - showing the dashboard (information about the item)
+    - information about the suppliers and how to contact them
+    - how long would it would be from when ordered to delivered

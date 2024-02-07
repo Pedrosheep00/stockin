@@ -1,77 +1,98 @@
 body {
-  background-color: #CCE3DE;
+  margin: 0;
+  padding: 0;
+  background-color: #CCE3DE; /* Your chosen background color */
+  font-family: 'Arial', sans-serif; /* Or any font you're using */
 }
 
-.square {
-  width: 8vw; /* Adjusted size for the square background */
-  height: 30vh; /* Adjusted size for the square background */
-  background-color: #F6FFF8;
-  margin-top: 0.5vw;
-  margin-bottom: 0.5vw;
-  margin-left: 2vw;
+.main-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  color: #6B9080;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 1vw;
+  align-items: center;
+  padding: 20px;
 }
 
-.itemsBg {
-  height: 65vh; /* Adjusted size for the square with items */
-  width: auto;
-  border-radius: 1.5vw;
-  background-color: #EAF4F4;
-  margin: 0 auto;
+.card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 20px;
+  max-width: 1000px; /* Or your preferred max width */
+}
+
+.card {
+  background-color: #F6FFF8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 200px; /* Adjust the width as needed */
+  margin: 10px;
+  overflow: hidden; /* This ensures the image stays within the card bounds */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 2vh;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Display squares in two lines */
-@media (min-width: 768px) {
-  .itemsBg {
-    max-width: 1200px;
-  }
-}
-
-.pictures {
-  width: 6vw; /* Adjusted size for the square with items */
-  height: 7vw; /* Adjusted size for the square with items */
-  background-color: #CCE3DE;
-  border-radius: 2.5vw; /* Adjusted size for the square with items */
-}
-
-.content {
-  text-align: center;
-}
-
-.name, .number {
-  display: block;
-  margin-top: 1vw;
-}
-
-.button-container {
+.image-placeholder {
+  width: 100%; /* Full width of the card */
+  height: auto; /* Height is auto to maintain image aspect ratio */
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.prev_page_button {
-  width: 4vw; /* Adjusted size for the previous page button */
-  height: 4vw; /* Adjusted size for the previous page button */
-  background-color: #A4C3B2;
-  border-radius: 50%;
-  margin-left: 1.5vw; /* Adjusted margin for the previous page button */
+.image-placeholder img {
+  max-width: 100%; /* Limit image width to not exceed placeholder */
+  max-height: 200px; /* Adjust max-height as needed */
+  object-fit: contain; /* Ensure the image fits nicely within the placeholder */
 }
 
-.next_page_button {
-  width: 4vw; /* Adjusted size for the next page button */
-  height: 4vw; /* Adjusted size for the next page button */
-  background-color: #A4C3B2;
-  border-radius: 50%;
-  margin-right: 1.5vw; /* Adjusted margin for the next page button */
+.card-content {
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1; /* Allow content to take up the remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
+.item-name {
+  font-size: 1rem; /* Adjust font size as needed */
+  margin-bottom: 0.5rem; /* Spacing between name and amount */
+  color: #597569;
+  font-weight: bold; /* Make the name bold */
+}
+
+.item-number {
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold; /* Make the amount bolder */
+  color: #597569; /* Darker text color for the amount */
+}
+
+/* .pagination-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+} */
+
+
+.add-item-button {
+  background-color: #597569;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add additional styles for specific breakpoints if needed */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%; /* Full width on smaller screens */
+  }
 }
