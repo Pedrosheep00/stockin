@@ -68,14 +68,6 @@ body {
   color: #597569; /* Darker text color for the amount */
 }
 
-/* .pagination-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-} */
-
 
 .add-item-button {
   background-color: #597569;
