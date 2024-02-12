@@ -1,0 +1,19 @@
+// Pseudocode for Header Component
+- Add state to control the visibility of the overlay.
+- Create a function to toggle this state.
+- Use a CSS class that applies a transform translateX property to slide the overlay in and out.
+- Attach this function to the hamburger icon's onClick event.
+- For the log out button, use the signOut method from Firebase auth and then redirect the user.
+
+// Pseudocode for Main Content Component
+- Fetch card data from Firestore.
+- Map over the card data to display cards.
+- For each card, ensure the image is constrained within the card dimensions.
+- Use object-fit CSS property to maintain the image aspect ratio.
+
+// Pseudocode for CSS
+- Define styles for the card class with constraints on the image size.
+- Use media queries to ensure responsiveness.
+- Style the overlay to slide in from the left and cover the full height of the viewport.
+
+
