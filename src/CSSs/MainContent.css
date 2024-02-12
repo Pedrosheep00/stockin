@@ -30,21 +30,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: auto; /* Let the height be determined by the content */
 }
 
 .image-placeholder {
   width: 100%; /* Full width of the card */
-  height: auto; /* Height is auto to maintain image aspect ratio */
+  height: 250px; /* Fixed height for all images */
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white; /* Fills the empty space with white background */
 }
 
 .image-placeholder img {
-  width: 100%; /* This will make the image fit the width of the card */
-  height: auto; /* This will maintain the aspect ratio of the image */
-  object-fit: cover; /* This will cover the placeholder area, you can use 'contain' to fit the image within it */
+  max-width: 100%; /* Image can be as wide as the container but no wider */
+  max-height: 100%; /* Image can be as tall as the container but no taller */
+  object-fit: contain; /* Maintain aspect ratio, but fit within the given dimensions */
 }
+
 
 .card-content {
   padding: 10px;
@@ -88,3 +91,68 @@ body {
     width: 90%; /* Full width on smaller screens */
   }
 }
+
+/* New overlay styles for the "Add Item" button */
+.mainOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Cover the full viewport width */
+  height: 100vh; /* Cover the full viewport height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* High z-index to be on top */
+}
+
+.add-item-overlay {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Space between form items */
+  z-index: 1001; /* Above the .mainOverlay */
+}
+
+.add-item-overlay form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.add-item-overlay input[type="file"],
+.add-item-overlay input[type="text"],
+.add-item-overlay input[type="number"] {
+  padding: 10px;
+  margin-bottom: 10px; /* Space between inputs */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-item-overlay button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-item-overlay button[type="submit"] {
+  background-color: #597569;
+  color: white;
+}
+
+.add-item-overlay button[type="button"] {
+  background-color: #CCCCCC;
+  color: #333333;
+}
+
+
+
+
