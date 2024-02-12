@@ -58,7 +58,7 @@ nav a {
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5); /* Add some shadow to the right side */
   transform: translateX(-100%); /* Start off-screen */
   transition: transform 0.3s ease; /* Transition for the sliding effect */
-  z-index: 100; /* Ensure the overlay is above other content */
+  z-index: 20; /* Adjust the z-index as needed to be higher than .add-item-overlay */
 }
 
 /* When overlay is visible */
