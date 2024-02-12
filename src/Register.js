@@ -86,7 +86,7 @@ const Register = () => {
           </div>
           <button className="RegisterBtn" onClick={handleRegister}>Register</button>
           <div className="signup-link">
-            <p>Don't have an account?</p>
+            <p>Already registered?</p>
             <button onClick={() => navigate('/login')}>Login</button>
           </div>
         </div>
