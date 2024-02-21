@@ -1,0 +1,28 @@
+//what to do next:
+
+    => for each item when clicken to open the card with a larger size, like zoom in. 
+        - make the design in figma 
+        - 
+
+    => when the card is opened to open the options to edit the amount,
+        - so a button to add(goods in) GREEN, one to reduce (sold, wasted) reduce
+        - A button on the top to delete the item from the database. 
+        - one button to add the item to a category. 
+    
+    => create the category page.
+        - different cards, design similar to main page
+        - multiple cards to express that thats a category.
+    
+    => display the category (ALL) in the main page 
+        - display other categories when clicked in the category link. 
+        - categories to be organized like folders
+
+    => trying to connect the firestore collection categories to the Categories.js page
+        - colelction created (1 image, 1 name and 1 id)
+        - need to create the design for categories
+        - update the CategoriesPage component to be able to fetch data and render accordingly 
+        - create an interface to add new categorie
+            - const AddCategoriesForm
+            - const HandleNameChange 
+            - const HandleFileChange 
+            - const HandleSubmit
