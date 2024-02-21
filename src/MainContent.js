@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { firestore, storage } from './firebase';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { auth, firestore, storage } from './firebase';
+import { collection, query, where, addDoc, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './CSSs/MainContent.css';
 
@@ -11,15 +11,28 @@ const MainComponent = () => {
         name: '',
         amount: '',
     });
-    const [showAddItem, setShowAddItem] = useState(false);
+    const [showAddItemOverlay, setShowAddItemOverlay] = useState(false);
+    const [user, setUser] = useState(null); // State to keep track of the logged-in user
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await generateSquares();
-            setCards(data);
-        };
-        fetchData();
+        // Listen for changes in authentication state
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            setUser(user);
+            if (user) {
+                fetchData(user.uid); // Fetch data for the logged-in user
+            }
+        });
+
+        // Cleanup the subscription
+        return unsubscribe;
     }, []);
+
+    const fetchData = async (userId) => {
+        const userCardsCollection = collection(firestore, `cards`);
+        const q = query(userCardsCollection, where("userId", "==", userId));
+        const querySnapshot = await getDocs(q);
+        setCards(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    };
 
     const handleFileChange = async (event) => {
         const file = event.target.files[0];
@@ -46,28 +59,26 @@ const MainComponent = () => {
         }));
     };
 
-    const handleAddCard = async () => {
-        if (!newCardData.name || !newCardData.amount || !newCardData.imageUrl) {
+    const handleAddCard = async (event) => {
+        event.preventDefault(); // Prevent the default form submission
+        if (!newCardData.name || !newCardData.amount || !newCardData.imageUrl || !user) {
             alert("Please fill in all fields before submitting.");
             return;
         }
+
         try {
             const docRef = await addDoc(collection(firestore, 'cards'), {
                 name: newCardData.name,
                 amount: Number(newCardData.amount),
                 imageUrl: newCardData.imageUrl,
+                userId: user.uid, // Associate each product with the user's UID
             });
-            const newCard = { id: docRef.id, ...newCardData };
-            setCards(prevCards => [...prevCards, newCard]);
+            setCards(prevCards => [...prevCards, { id: docRef.id, ...newCardData }]);
             setNewCardData({ imageUrl: '', name: '', amount: '' });
-            setShowAddItem(false);
+            setShowAddItemOverlay(false);
         } catch (error) {
             console.error("Error adding card to Firestore: ", error);
         }
-    };
-
-    const handleAddItemClick = () => {
-        setShowAddItem(true);
     };
 
     const generateSquares = async () => {
@@ -85,35 +96,46 @@ const MainComponent = () => {
     };
 
     return (
+        
         <div className="main-container">
-            <div className="card-container">
-                {cards.map((card, index) => (
-                    <div className="card" key={index}>
-                        <div className="image-placeholder">
-                            {card.imageUrl && (
-                                <img src={card.imageUrl} alt={`Card ${card.name}`} />
-                            )}
-                        </div>
-                        <div className="card-content">
-                            <span className="item-name">{card.name}</span>
-                            <span className="item-number">{card.amount}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            {showAddItem && (
-                <div className="add-item-form">
-                    <input type="file" accept="image/*" onChange={handleFileChange} />
-                    <input type="text" placeholder="Name" name="name" value={newCardData.name} onChange={handleInputChange} />
-                    <input type="number" placeholder="Amount" name="amount" value={newCardData.amount} onChange={handleInputChange} />
-                    <button onClick={handleAddCard}>Submit</button>
-                </div>
-            )}
             <div className="pagination-buttons">
-                <button className="add-item-button" onClick={handleAddItemClick}>add item</button>
+            <button className="add-item-button" onClick={() => setShowAddItemOverlay(true)}>Add Item</button>
             </div>
+          <div className="card-container">
+            {cards.map((card, index) => (
+              <div className="card" key={index}>
+                <div className="image-placeholder">
+                  {card.imageUrl && (
+                    <img src={card.imageUrl} alt={`Card ${card.name}`} />
+                  )}
+                </div>
+                <div className="card-content">
+                  <span className="item-name">{card.name}</span>
+                  <span className="item-number">{card.amount}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+      
+          {/* Overlay for adding new item */}
+          {showAddItemOverlay && (
+            <div className="mainOverlay">
+              <div className="add-item-overlay">
+            <form onSubmit={handleAddCard}>
+                <input type="file" accept="image/*" onChange={handleFileChange} />
+                <input type="text" placeholder="Name" name="name" value={newCardData.name} onChange={handleInputChange} />
+                <input type="number" placeholder="Amount" name="amount" value={newCardData.amount} onChange={handleInputChange} />
+                <button type='submit'>SUBMIT</button>
+                <button onClick={() => setShowAddItemOverlay(false)}>CANCEL</button>
+            </form>
+              </div>
+            </div>
+          )}
+      
+          
         </div>
-    );
+      );
+      
 };
 
 export default MainComponent;

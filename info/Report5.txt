@@ -1,0 +1,22 @@
+//Organizing overlays 
+- organizing css components of header and MainContent pages, 
+- design of the overlay for the hamburguer icon, from the header
+- bring the overlay to slide right from the left when clicked
+
+- brin the add-item button to the top of the page 
+- organize the css of the page and overlay configuration in the js, so when the add-item button is clicked to open another overlay to input the items 
+- creating functions and consts to close the overlay when its being shown and a listener for when click outside the overlay to close it.
+
+//separating collections and auth pages:
+- to pull the correct items (products) for each user logged in, 
+- connecting the firestore from firebase to the Main Content page according to the auth, so itll know which user is logged in 
+- fetch data function added to the bottom of addCardFunction from when the card is added, and saved in the firestore.
+
+// different user will now not be able to see the data from another user. they will be private 
+
+//----------- FOR THE NEXT STEPS --------------------------
+
+- create a categories page, give the items (products) buttons and ids for them to be identified from different categories.
+- organize the home page to show ALL ITEMS.
+- when clicked in the page categories, for each category to only show its correspondent items.
+- allow user to input, create new categories, and identify the products for each product. 

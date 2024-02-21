@@ -18,6 +18,7 @@ Implemented changes in the MainContent, organization to make it work.
 - use of the authentication to load the collections according to the user logged in. (company )
 
 //For the next steps 
+- create a logOut button and think about the CODE to access thing 
 - reorganize the overlay on the side of the page, with links to categories page.
 - to open each category with different items, from the firebase list (collection)
 - to give thoughts about what the dashboard will look like 
