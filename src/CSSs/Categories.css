@@ -2,7 +2,7 @@
 .categories-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   gap: 20px;
   padding: 20px;
 }
@@ -18,6 +18,11 @@
   justify-content: space-between;
   align-items: center;
   overflow: hidden; /* Ensures that the image does not overflow the card */
+  transition: transform 0.3s ease; /* Smooth transition for transform changes */
+}
+.category-card:hover {
+  transform: scale(1.15); /* Slightly enlarge the card on hover */
+  z-index: 10; /* Ensure the card is above others when scaling up */
 }
 
 .category-image {

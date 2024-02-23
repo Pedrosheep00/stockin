@@ -31,8 +31,12 @@ body {
   flex-direction: column;
   align-items: center;
   height: auto; /* Let the height be determined by the content */
+  transition: transform 0.3s ease; /* Smooth transition for transform changes */
 }
-
+.card:hover {
+  transform: scale(1.15); /* Slightly enlarge the card on hover */
+  z-index: 10; /* Ensure the card is above others when scaling up */
+}
 .image-placeholder {
   width: 100%; /* Full width of the card */
   height: 250px; /* Fixed height for all images */
