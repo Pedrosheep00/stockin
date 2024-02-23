@@ -11,6 +11,9 @@
         - adding funtions and classes to the overlay thats gonna open when the button is clicked. 
         - Design of the overlay and addition of the input fields to the code of JS (return)
         - styling it all in the CSS page.
+        
+    - adding design styles for both Categories.css and MainContent.ccs pages
+        - when hoovering over the items (cards) to zoom in 
 
     -Organizing the cards of Categories.js page to display an image and a Name for the category
         - linking all the input fields to the storage
