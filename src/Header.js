@@ -49,7 +49,7 @@ function Header() {
         <ul>
           <li><Link to="/" onClick={() => setOverlayVisible(false)}>Dashboard</Link></li>
           <li><Link to="/about" onClick={() => setOverlayVisible(false)}>Staff</Link></li>
-          <li><Link to="/contact" onClick={() => setOverlayVisible(false)}>Categories</Link></li>
+          <li><Link to="/categories" onClick={() => setOverlayVisible(false)}>Categories</Link></li>
           <li><Link to="/contact" onClick={() => setOverlayVisible(false)}>Insights</Link></li>
           <li><Link to="/contact" onClick={() => setOverlayVisible(false)}>Settings</Link></li>
 
