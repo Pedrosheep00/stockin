@@ -1,0 +1,47 @@
+// adding a category page 
+    - designing the categories page
+    - linking the button "Categories" in the header overlay to open a new page of Categories instead of the MainContent keeping header and footer
+    - adding a  "Categories" collection to the firebase FIRESTORE.
+    - linking the firestore and the storage in the Categories.js page 
+    - Linking Categories.css to the JS page
+
+// Desinging the Categories Page and organizing its functionality. 
+    - when designed, with a button to "Add New Category"
+        - relating the design of this page to the "MainContent" for similarity.
+        - adding funtions and classes to the overlay thats gonna open when the button is clicked. 
+        - Design of the overlay and addition of the input fields to the code of JS (return)
+        - styling it all in the CSS page.
+
+    -Organizing the cards of Categories.js page to display an image and a Name for the category
+        - linking all the input fields to the storage
+            - remaking the rules of the storage to allow user to input the pictures to storage from local Machine 
+            - remaking rules in Firestore storage to allow user input data to the firestore in the "Categories" collection
+        
+        - creating functions and const
+            - creating state for the overalay visibility 
+            - useEffect to fecth the categories
+            - const to HandleImageUpload to save image to firebase
+            - const HandleAddCategory
+
+// use the help of AI in these steps above 
+    - to update the codes of the whole page for me multiple times, when:
+        - changing a function or names
+        - wanting to make changes in the CSS to fix the codes
+        - encountering errors and trying to fix them 
+        - when needed to re-write the code for any additional purposes
+            - as adding firestore and storage integration.
+
+
+// TO DO NEXT 
+    - add input field in items (somehow) to connect them to one category
+        -  create an overlay to when clicking in any item in the MainContent page. All items 
+            - all items to be displayed in MainContent page (All items) independent from what category they're assigned to.
+        
+    
+    - add function in the categories when opening them, to open a new page 
+        - showing the items assigned to that one category 
+    
+    - to add a button inside each category to assign items to it 
+    - create a button in create new category, for when adding a new item to create a specific NEW category for that one.
+
+    

@@ -1,42 +1,32 @@
 // src/components/Login.js
 import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/compat/app'; // Change this line
-import 'firebase/compat/auth';
-import './CSSs/Login.css'; // Import the CSS file for styling
-import 'firebase/compat/storage';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { auth } from './firebase'; // Adjust the import path as necessary
+import './CSSs/Login.css'; // Ensure CSS styling is consistent with Register.css
+import { Link, useNavigate } from 'react-router-dom';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
-
-
-const Login = ({ history }) => {
+const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+
     useEffect(() => {
-      // Check if a user is already signed in
-      const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          // Redirect to the main component if the user is signed in
-          navigate('/main');
-        }
-      });
-  
-      // Cleanup the subscription when the component unmounts
-      return () => unsubscribe();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navigate('/main'); // Redirect if user is already signed in
+            }
+        });
+        return () => unsubscribe(); // Cleanup subscription
     }, [navigate]);
-  
-    const handleLogin = async () => {
-      try {
-        // Sign in with email and password
-        await firebase.auth().signInWithEmailAndPassword(email, password);
-  
-        // Redirect to the main component after successful login
-        navigate('/main');
-      } catch (error) {
-        console.error('Error logging in:', error.message);
-      }
+
+    const handleLogin = async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/main'); // Redirect after successful login
+        } catch (error) {
+            console.error('Error logging in:', error.message);
+        }
     };
 
     return (
@@ -52,27 +42,30 @@ const Login = ({ history }) => {
                 </nav>
             </div>
 
-            <div className='mid_Content'>
-                
-            <img src={"https://firebasestorage.googleapis.com/v0/b/stokin-try1.appspot.com/o/login_page_image.png?alt=media&token=32d41007-fb71-4aa3-9644-f82fead90f24"} alt="Inventory Management System" />
+            <div className="mid_Content">
+                <img
+                src={'https://firebasestorage.googleapis.com/v0/b/stokin-try1.appspot.com/o/login_page_image.png?alt=media&token=32d41007-fb71-4aa3-9644-f82fead90f24'}
+                alt="Inventory Management System"
+                />
 
                 <div className="login-square">
                     <h2>Login</h2>
-                    <div>
-                        <label>Email:</label>
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
-                    <button onClick={handleLogin}>Login</button>
+                    <form onSubmit={handleLogin}>
+                        <div>
+                            <label>Email:</label>
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
                     <div className="signup-link">
                         <p>Don't have an account?</p>
-                        <Link to="/register"><button>Sign up</button></Link>
+                        <button onClick={() => navigate('/register')}>Sign up</button>
                     </div>
                 </div>
-                
             </div>
         </div>
     );
