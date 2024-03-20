@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #CCE3DE; /* Your chosen background color */
-  font-family: 'Arial', sans-serif; /* Or any font you're using */
+  background-color: #CCE3DE;
+  font-family: 'Arial', sans-serif;
 }
 
 .main-container {
@@ -17,74 +17,188 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
-  max-width: 1000px; /* Or your preferred max width */
+  max-width: 1000px;
 }
 
 .card {
   background-color: #F6FFF8;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 200px; /* Adjust the width as needed */
+  width: 200px;
   margin: 10px;
-  overflow: hidden; /* This ensures the image stays within the card bounds */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: auto; /* Let the height be determined by the content */
-  transition: transform 0.3s ease; /* Smooth transition for transform changes */
+  height: auto;
+  transition: transform 0.3s ease;
 }
+
 .card:hover {
-  transform: scale(1.15); /* Slightly enlarge the card on hover */
-  z-index: 10; /* Ensure the card is above others when scaling up */
+  transform: scale(1.15);
+  z-index: 10;
 }
+
 .image-placeholder {
-  width: 100%; /* Full width of the card */
-  height: 250px; /* Fixed height for all images */
+  width: 100%;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white; /* Fills the empty space with white background */
+  background-color: #F6FFF8;
 }
 
 .image-placeholder img {
-  max-width: 100%; /* Image can be as wide as the container but no wider */
-  max-height: 100%; /* Image can be as tall as the container but no taller */
-  object-fit: contain; /* Maintain aspect ratio, but fit within the given dimensions */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
-
 
 .card-content {
   padding: 10px;
   text-align: center;
-  flex-grow: 1; /* Allow content to take up the remaining space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically */
+  flex-grow: 1;
 }
 
-.item-name {
-  font-size: 1rem; /* Adjust font size as needed */
-  margin-bottom: 0.5rem; /* Spacing between name and amount */
+.item-name, .item-number {
+  font-size: 1rem;
   color: #597569;
-  font-weight: bold; /* Make the name bold */
+  font-weight: bold;
 }
 
 .item-number {
-  font-size: 1.5rem; /* Adjust font size as needed */
-  font-weight: bold; /* Make the amount bolder */
-  color: #597569; /* Darker text color for the amount */
+  font-size: 1.5rem;
 }
 
-
-.add-item-button {
+.add-item-button, .info-action-button {
   background-color: #597569;
+  color: F6FFF8;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-/* Add additional styles for specific breakpoints if needed */
+.mainOverlay, .edit-item-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-item-overlay, .edit-item-overlay {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  max-width: 400px; /* Set a max-width for the form */
+}
+input[type="file"], input[type="text"], input[type="number"], select {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 92%; /* Full width of the form container */
+}
+
+.add-item-overlay button, .edit-item-overlay button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%; /* Full width of the form container */
+  margin-top: 10px; /* Space between buttons and the form input above */
+}
+
+.add-item-overlay button[type="button"], .edit-item-overlay button[type="button"] {
+  background-color: #CCCCCC;
+}
+
+/* Hover effect for buttons */
+.add-item-overlay button:hover, .edit-item-overlay button:hover {
+  opacity: 0.9;
+}
+
+.overlayCardInfo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.card-info-content {
+  background-color: #F6FFF8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-info-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #597569;
+  text-transform: uppercase;
+}
+
+.close-overlay {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #597569;
+}
+
+
+.card-info-image {
+  max-width: 100%; /* Ensures the image does not exceed the width of its container */
+  max-height: 200px; /* Adjust this value to set the maximum height */
+  margin-bottom: 20px;
+}
+
+.card-info-details p {
+  margin: 5px 0;
+  color: #597569; /* You can adjust the color as needed */
+}
+
+.card-info-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.info-action-button:hover {
+  background-color: red;
+}
+
 @media (max-width: 768px) {
   .card-container {
     flex-direction: column;
@@ -94,132 +208,13 @@ body {
   .card {
     width: 90%; /* Full width on smaller screens */
   }
+
+  .card-info-content {
+    width: 90%; /* Adjust content width on smaller screens */
+  }
+  .add-item-overlay, .edit-item-overlay {
+    width: 90%; /* Make the form take up most of the screen on smaller devices */
+    margin: 20px; /* Add some margin to ensure it doesn't touch the edges */
+  }
+  
 }
-
-/* New overlay styles for the "Add Item" button */
-.mainOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* Cover the full viewport width */
-  height: 100vh; /* Cover the full viewport height */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* High z-index to be on top */
-}
-
-.add-item-overlay {
-  background-color: #FFFFFF;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px; /* Space between form items */
-  z-index: 1001; /* Above the .mainOverlay */
-}
-
-.add-item-overlay form {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 10px;
-}
-
-.add-item-overlay input[type="file"],
-.add-item-overlay input[type="text"],
-.add-item-overlay input[type="number"] {
-  padding: 10px;
-  margin-bottom: 10px; /* Space between inputs */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.add-item-overlay button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.add-item-overlay button[type="submit"] {
-  background-color: #597569;
-  color: white;
-}
-
-.add-item-overlay button[type="button"] {
-  background-color: #CCCCCC;
-  color: #333333;
-}
-
-/* ------------CARD INFO OVERLAY ------------ */
-/* Overlay styles for card information */
-.overlayCardInfo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.card-info-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-info-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.close-overlay {
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #597569;
-}
-
-.card-info-image {
-  max-width: 100px;
-  margin: 20px 0;
-}
-
-.card-info-details p {
-  margin: 5px 0;
-}
-
-.card-info-actions {
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.info-action-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-
