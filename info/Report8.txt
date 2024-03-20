@@ -1,0 +1,20 @@
+// Creating an overlay to each item when clickin on them
+    - creating and designing the overlay 
+        - CardInfoOverlay created to refer to the overlay of the card info 
+        - fetchin data for each cardInfoOverlay, from the cards (firestore - firebase)
+    - creations of functions for when the overelay will open and close 
+        - const HandleCardClick and HandleCloseCardInfoOverlay.
+        - adding functions for when the overlay is opened, what to show. 
+
+        - fetching information like the card picture, and organizing the size, and position (css)
+        - adding information MINIMUN AMOUNT, QUANTITY, CATEGORY.
+        - two buttons, one for supplier. and one for the dashboard of the item, so far. 
+        - a name, and the button to close the overlay
+        - assigned the id of each item to be displayed when the Overlay is opened.
+
+// To do next, relating to the overlay 
+    - organize the design acoordingly to the one in figma 
+    - create input fields to add minimum amount 
+    - assign category according to Report7.txt 
+        - to each item, and to open in the Page categories.
+    - start thinking about the colour code for when the minimum amount is reached.

@@ -1,0 +1,41 @@
+Implementing an edit feature for each item, allowing you to update the name, amount, or image.
+Adding a delete function to remove items from the inventory.
+Introducing search and filtering capabilities to easily locate items.
+Implementing pagination or infinite scrolling for better handling of large inventories.
+Creating detailed reports or exporting data functionality.
+
+// assigning each item to a category
+ - or even creating a new category when adding a new item 
+ - importing Categories in the MainContent page as well, so it'll find and know 
+ - adding a select list, to assign the new items to a category, then display the category in the item info when opening it.
+
+// adding an input field to assign a minimum amount for the item. 
+ - first assigning it to the firestore database. as a Key-value
+ - Adding the input field 
+ - modifying the handleAddCard Function
+ - display the minimum amount in the item's details 
+    - fixing the quantity displayed in the card's info.
+
+// Adding an edit button to each item, so the user can update the info, or the image, or delete the item 
+    -  adding the edit button inside the map function that renders the overlay
+    -  creating the const stating for edit with showing the overlay to edit
+    -  one const to handle the edit click 
+    - and create the edit form overlay, in the return page.
+    - add an event for the click listener, when clicking the edit button, it'll listen only the overlay and only open the edit overlay.
+    - fixing all the css of the fields and of the overlays.
+
+//Creating a CategoryItemsPage
+    - to be able to display only the items in that category, similarly to the Main Page 
+    - create a card.js component
+    - add a onClick listener to each card in the categories page.
+    - add a dynamic route to CategoryItemsPage in App.js file 
+    - creation of Card.js and Card.css
+        -to assign properly each card in each category to be pulled to the page with the design. 
+    
+    
+
+//------------- TO DO NEXT ----------------//
+    - create a button to remove the item in the Edit items. in Main Content page 
+    - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
+    - add AddItem button to the CategoryItemsPage
+    - Add buying price and selling price scheme 
