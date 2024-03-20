@@ -26,7 +26,16 @@ Creating detailed reports or exporting data functionality.
 
 //Creating a CategoryItemsPage
     - to be able to display only the items in that category, similarly to the Main Page 
+    - create a card.js component
+    - add a onClick listener to each card in the categories page.
+    - add a dynamic route to CategoryItemsPage in App.js file 
+    - creation of Card.js and Card.css
+        -to assign properly each card in each category to be pulled to the page with the design. 
+    
     
 
 //------------- TO DO NEXT ----------------//
     - create a button to remove the item in the Edit items. in Main Content page 
+    - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
+    - add AddItem button to the CategoryItemsPage
+    - Add buying price and selling price scheme 

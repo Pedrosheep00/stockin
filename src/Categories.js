@@ -1,18 +1,18 @@
-// Categories.js
 import React, { useState, useEffect } from 'react';
 import './CSSs/Categories.css';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { firestore, storage } from './firebase'; // Adjust the import path as necessary
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Categories = () => {
-  // State to keep track of the categories and overlay visibility
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState('');
   const [newCategoryImage, setNewCategoryImage] = useState('');
   const [categories, setCategories] = useState([]);
 
-  // Fetch categories when the component mounts
+  const navigate = useNavigate(); // Initialize useNavigate
+
   useEffect(() => {
     const fetchCategories = async () => {
       const querySnapshot = await getDocs(collection(firestore, 'Categories'));
@@ -22,12 +22,10 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  // Function to toggle the visibility of the overlay
   const toggleOverlay = () => {
     setOverlayVisible(!overlayVisible);
   };
 
-  // Function to handle file selection and upload
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) {
@@ -40,7 +38,6 @@ const Categories = () => {
     setNewCategoryImage(imageUrl);
   };
 
-  // Function to handle adding a new category
   const handleAddCategory = async (e) => {
     e.preventDefault();
     if (!newCategoryName || !newCategoryImage) {
@@ -90,7 +87,11 @@ const Categories = () => {
       )}
       <div className="categories-container">
         {categories.map((category) => (
-          <div key={category.id} className="category-card">
+          <div 
+            key={category.id} 
+            className="category-card" 
+            onClick={() => navigate(`/categories/${category.name}`)} // Use navigate here
+          >
             <img src={category.imageUrl} alt={category.name} className="category-image" />
             <div className="category-info">
               <h3 className="category-name">{category.name}</h3>

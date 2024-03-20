@@ -5,6 +5,7 @@ import Header from './Header';
 import MainContent from './MainContent';
 import Footer from './Footer';
 import Categories from './Categories';
+import CategoryItemsPage from './CategoryItemsPage'; // Import the new component
 import Login from './Login';
 import Register from './Register';
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:categoryName" element={<CategoryItemsPage />} /> {/* New dynamic route for category items */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Navigate to="/" />} />
@@ -29,4 +31,3 @@ function App() {
 }
 
 export default App;
-
