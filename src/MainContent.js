@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { auth, firestore, storage } from './firebase';
-import { collection, query, where, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, where, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './CSSs/MainContent.css';
 
@@ -32,6 +32,14 @@ export const MainComponent = () => {
       const q = query(userCardsCollection, where('userId', '==', userId));
       const querySnapshot = await getDocs(q);
       setCards(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    };
+
+    const handleDeleteCard = async (cardId) => {
+      if (window.confirm("Are you sure you want to delete this item?")) {
+        const cardDocRef = doc(firestore, "cards", cardId);
+        await deleteDoc(cardDocRef);
+        setCards(cards.filter((card) => card.id !== cardId));
+      }
     };
 
     const fetchCategories = async () => {
@@ -154,19 +162,31 @@ export const MainComponent = () => {
       </div>
   
       <div className="card-container">
-        {cards.map((card) => (
-          <div className="card" key={card.id} onClick={() => handleCardClick(card)}>
-            <div className="image-placeholder">
-              {card.imageUrl ? <img src={card.imageUrl} alt={`Card ${card.name}`} /> : <div>No Image</div>}
+        {cards.map((card) => {
+          let cardClass = 'card';
+          if (card.amount === card.minimum || card.amount == card.minimum + 1 || card.amount == card.minimum - 1 || card.amount == card.minimum + 2) {
+            cardClass += ' card-warning';
+          } else if (card.amount < card.minimum) {
+            cardClass += ' card-danger';
+          }
+  
+          return (
+            <div className={cardClass} key={card.id}>
+              <div className="image-placeholder" onClick={() => handleCardClick(card)}>
+                {card.imageUrl ? <img src={card.imageUrl} alt={`Card ${card.name}`} /> : <div>No Image</div>}
+              </div>
+              <div className="card-content" onClick={() => handleCardClick(card)}>
+                <span className="item-name">{card.name}</span>
+                <br></br>
+                <span className="item-number">{card.amount}</span>
+              </div>
+              <div className="card-actions">
+                <button onClick={(event) => handleEditClick(event, card)}>Edit</button>
+                <button onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }} className="delete-button">Delete</button>
+              </div>
             </div>
-            <div className="card-content">
-              <span className="item-name">{card.name}</span>
-              <br></br>
-              <span className="item-number">{card.amount}</span>
-            </div>
-            <button onClick={(event) => handleEditClick(event, card)}>Edit</button>         
-             </div>
-        ))}
+          );
+        })}
       </div>
   
       {showAddItemOverlay && (
