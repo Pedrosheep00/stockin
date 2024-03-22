@@ -11,6 +11,7 @@
 
 
 // TO ADD NEXT 
+    - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
     - DASHBOARD 
     - add delete button to the card info overlay. 
     - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
