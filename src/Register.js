@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import './CSSs/Register.css'; // Import the CSS file for styling
-import 'firebase/compat/storage';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import './CSSs/Register.css';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -14,15 +13,10 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      // Sign up with email and password
       const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
-
-      // Update the user profile with first and last name
       await user.updateProfile({
         displayName: `${firstName} ${lastName}`,
       });
-
-      // Redirect to the login page after successful registration
       navigate('/login');
     } catch (error) {
       console.error('Error registering:', error.message);
@@ -52,39 +46,33 @@ const Register = () => {
 
         <div className="register-square">
           <h2>Register</h2>
-          <div>
+          <form onSubmit={handleRegister}>
             <label>First Name:</label>
             <input
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
-          </div>
-          <div>
             <label>Last Name:</label>
             <input
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-          </div>
-          <div>
             <label>Email:</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </div>
-          <div>
             <label>Password:</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
-          <button className="RegisterBtn" onClick={handleRegister}>Register</button>
+            <button className="RegisterBtn" type="submit">Register</button>
+          </form>
           <div className="signup-link">
             <p>Already registered?</p>
             <button onClick={() => navigate('/login')}>Login</button>

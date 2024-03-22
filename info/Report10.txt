@@ -25,4 +25,4 @@
     - add AddItem button to the CategoryItemsPage
     - Add buying price and selling price scheme 
     - create cover page for the project based on new ideas and reserach 
-    
+    - create the search engine or filter engine the items in the main page.
