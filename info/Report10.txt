@@ -1,0 +1,28 @@
+//Create a button to remove the item in the Edit items. in Main Content page 
+    - the simple step to create a delete button was just to add the deleteDoc imported from firebase features
+    - then add a Handle Const to handle the action 
+    - and adding the button to the delete form inside the return statement.
+    - then style and reorganize the cards
+        - lil issue was encountered when added the buttons, so they wouldnt align in a row, but in a column instead. 
+        - fixed this issue by adding both buttons inside a div (box) and styling the box with margin and padding, and positions
+
+//Adding colour code to the minimum amount and mid amount 
+    - yellow when the quantity is equals to minimum amount with a range of more or less 1 
+    - red when the quantity is less than the minimum amount - 1
+    - if the quantity is more than 2 than the minimum amount the colours keeps green. 
+        to do this process was pretty easy, all i got to do was add an if else statement (condition)
+        to the class of the card, so the class would be added according to the ammount 
+        then the class was styles in the Css component. 
+
+----------------------------THINK ABOUT THIS----------------------------------
+// FINDING OUT THAT MAYBE, INSTEAD OF CREATING A MAIN PAGE WITH ALL OF THE CARDS, AND PULLING IT ALL FROM THEM, MAYBE
+// I SHOULD'VE CREATED A CARD COMPONENT TO FETCH THE CARD DESIGN AND INFORMATION FROM IT 
+
+
+// TO ADD NEXT 
+    - add delete button to the card info overlay. 
+    - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
+    - add AddItem button to the CategoryItemsPage
+    - Add buying price and selling price scheme 
+    - create cover page for the project based on new ideas and reserach 
+    - create the search engine or filter engine the items in the main page.

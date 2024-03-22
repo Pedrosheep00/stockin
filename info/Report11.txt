@@ -1,0 +1,20 @@
+//create cover page for the project based on new ideas and reserach 
+    - after much researching in similar softwares and webpages the decision of creating a FrontPage.js and FrontPage.css was made.
+    - after the creation the roots in App.js had to be changed, some buttons and forms had to be edited for better user experience.
+    - The front page is meant to introduce the product to the customer. 
+    - kept the choice of colors. 
+    - still to be edited (footer, rest of the page with the feautures)
+
+----------------------------THINK ABOUT THIS----------------------------------
+// FINDING OUT THAT MAYBE, INSTEAD OF CREATING A MAIN PAGE WITH ALL OF THE CARDS, AND PULLING IT ALL FROM THEM, MAYBE
+// I SHOULD'VE CREATED A CARD COMPONENT TO FETCH THE CARD DESIGN AND INFORMATION FROM IT 
+
+
+// TO ADD NEXT 
+    - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
+    - DASHBOARD 
+    - add delete button to the card info overlay. 
+    - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
+    - add AddItem button to the CategoryItemsPage
+    - Add buying price and selling price scheme     - 
+    - create the search engine or filter engine the items in the main page.

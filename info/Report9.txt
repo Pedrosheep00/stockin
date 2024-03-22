@@ -39,3 +39,5 @@ Creating detailed reports or exporting data functionality.
     - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
     - add AddItem button to the CategoryItemsPage
     - Add buying price and selling price scheme 
+    - create cover page for the project based on new ideas and reserach 
+    
