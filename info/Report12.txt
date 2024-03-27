@@ -1,0 +1,72 @@
+----------------------------THINK ABOUT THIS----------------------------------
+// FINDING OUT THAT MAYBE, INSTEAD OF CREATING A MAIN PAGE WITH ALL OF THE CARDS, AND PULLING IT ALL FROM THEM, MAYBE
+// I SHOULD'VE CREATED A CARD COMPONENT TO FETCH THE CARD DESIGN AND INFORMATION FROM IT 
+    - so far the creation of a component to the Card as "Card.js" was not needed
+    - currently, im getting all of the data and desing from the firestore and the MainContent.js page (main page)
+
+// create the search engine or filter engine the items in the main page:
+    - for the creation of this was really simple, all i needed to do was to add a const function to filter the items
+    - add the input field, and style it accordingly 
+    - also add the search engine without the case sensitive thing to filter the cards
+
+    // together with the  search bar, a thick box was added to the right side of it 
+        - the thick box is a joined idea
+        - same procedure but instead of the input field, the thick box, 
+        - using the same fuction 
+        - with the finality to when clicked (thicked) only items that are in "LOW STOCK" will apear
+        - to ease the ordering procedures of the Company
+
+
+// NEXT 
+
+    - adjust FrontPage with all the recently added feautures
+
+    - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
+
+    - DASHBOARD 
+        - think about the scheme 
+        - what data to display?
+        - how can it be useful for the user 
+
+    - add a button to delete one category
+
+    - add a link to forgot your password linked to the email address.
+
+    - Supplier button 
+        - add supplier name 
+        - supplier form of contact
+        - supplier method of ordering 
+
+    - set up profile page (to add info about the user and a profile picture)
+
+    - fix buttons in the login and register pages (list bar)
+
+    - adjust the CategoryItemsPage to be functional
+        - info buttons
+        - edit buttons
+        - colour coding
+        - add item 
+        - delete item 
+        - search engine
+
+    - add delete button to the card info overlay and edit. 
+
+    - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
+
+    - add AddItem button to the CategoryItemsPage
+
+    - (TO CONSIDER )
+        - Add buying price and selling price scheme  
+        - STAFF CONTROL 
+    
+
+    - create the search engine or filter engine the items in the main page.
+
+    - cookies for the page
+
+    - About us page 
+
+    - contact the server (CONTACT page)
+
+
+

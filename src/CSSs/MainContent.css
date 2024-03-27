@@ -78,7 +78,13 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1rem;
+  margin-top: 10vh;
   margin-bottom: 7rem;
+  margin-right: auto;
+  transition: background-color 0.3s ease;
+  margin-left: 15vh;
+
 }
 
 .mainOverlay, .edit-item-overlay {
@@ -125,6 +131,10 @@ input[type="file"], input[type="text"], input[type="number"], select {
 
 .add-item-overlay button[type="button"], .edit-item-overlay button[type="button"] {
   background-color: #CCCCCC;
+}
+
+.add-item-button:hover {
+  background-color: #455a64; /* Darker shade for hover state */
 }
 
 /* Hover effect for buttons */
@@ -251,4 +261,54 @@ input[type="file"], input[type="text"], input[type="number"], select {
     margin: 20px; /* Add some margin to ensure it doesn't touch the edges */
   }
   
+}
+
+.control-panel {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  }
+
+.search-and-filter {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-container {
+  flex-grow: 3; /* Allows the search bar container to take up more space */
+  display: flex;
+  justify-content: center; /* Center the search bar */
+}
+
+.search-bar {
+  width: 100%; /* Use full width of its container */
+  max-width: 500px; /* Set a max-width so it doesn't get too large */
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #597569;
+  font-size: 1rem;
+}
+
+.low-stock-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the checkbox horizontally */
+  flex-grow: 1; /* Allows this container to take up space as well */
+}
+
+input[type='checkbox'] {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+  margin-right: 10px; /* Spacing between the checkbox and the label */
+}
+
+.low-stock-checkbox label {
+  cursor: pointer;
+  font-size: 1rem;  
+  margin-left: -13vh;
+  margin-bottom: 3.8vh;
 }
