@@ -14,6 +14,8 @@ export const MainComponent = () => {
   const [categories, setCategories] = useState([]); // Changed to categories and initialized as an array
   const [showEditItemOverlay, setShowEditItemOverlay] = useState(false);
   const [editingCard, setEditingCard] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [lowStockOnly, setLowStockOnly] = useState(false);
 
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -34,18 +36,27 @@ export const MainComponent = () => {
       setCards(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     };
 
-    const handleDeleteCard = async (cardId) => {
+  const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const handleLowStockChange = (e) => setLowStockOnly(e.target.checked);
+
+  const filteredCards = cards.filter(card => {
+    const searchMatch = card.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const lowStock = card.amount <= card.minimum;
+    return (lowStockOnly ? lowStock : true) && searchMatch;
+  });
+
+  const handleDeleteCard = async (cardId) => {
       if (window.confirm("Are you sure you want to delete this item?")) {
         const cardDocRef = doc(firestore, "cards", cardId);
         await deleteDoc(cardDocRef);
         setCards(cards.filter((card) => card.id !== cardId));
       }
-    };
+  };
 
-    const fetchCategories = async () => {
+  const fetchCategories = async () => {
       const querySnapshot = await getDocs(collection(firestore, 'Categories'));
       setCategories(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-    };
+  };
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -124,7 +135,6 @@ export const MainComponent = () => {
           category: editingCard.category,
           imageUrl: editingCard.imageUrl,
         });
-        // Update the cards in the UI
         const updatedCards = cards.map(card => card.id === editingCard.id ? {...editingCard} : card);
         setCards(updatedCards);
         setShowEditItemOverlay(false);
@@ -133,6 +143,12 @@ export const MainComponent = () => {
         console.error("Error updating document: ", error);
       }
     }
+  };
+
+  const getCardClass = (amount, minimum) => {
+    if (amount < minimum) return 'card card-danger';
+    if (amount === minimum || amount === minimum + 1) return 'card card-warning';
+    return 'card'; // default class if stock is adequate
   };
 
   const handleCardClick = (card) => {
@@ -145,9 +161,12 @@ export const MainComponent = () => {
     setSelectedCard(null);
   };
 
+  
   const handleEditClick = (event, card) => {
-    event.preventDefault(); // Prevent form submission if it's inside a form
-    event.stopPropagation(); // Stop the event from propagating to parent elements
+    event.preventDefault(); // This is the correct usage of event.preventDefault
+    event.stopPropagation(); // Stops the click from reaching higher elements
+    setEditingCard(card);
+    setShowEditItemOverlay(true);
   
     // Proceed to set the state to display the edit overlay
     setEditingCard(card);
@@ -157,37 +176,55 @@ export const MainComponent = () => {
   };
   return (
     <div className="main-container">
-      <div className="pagination-buttons">
+      
+      <div className="control-panel">
         <button className="add-item-button" onClick={() => setShowAddItemOverlay(true)}>Add Item</button>
+
+        <div className="search-bar-container">
+          <input
+            type="text"
+            placeholder="Search items..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search-bar"
+          />
+        </div>
+
+        <div className="low-stock-checkbox">
+          <input
+            type="checkbox"
+            id="low-stock-checkbox"
+            checked={lowStockOnly}
+            onChange={handleLowStockChange}
+          />
+          <label htmlFor="low-stock-checkbox">Low Stock</label>
+        </div>
       </div>
-  
+
+    
       <div className="card-container">
-        {cards.map((card) => {
-          let cardClass = 'card';
-          if (card.amount === card.minimum || card.amount == card.minimum + 1 || card.amount == card.minimum - 1 || card.amount == card.minimum + 2) {
-            cardClass += ' card-warning';
-          } else if (card.amount < card.minimum) {
-            cardClass += ' card-danger';
-          }
-  
-          return (
-            <div className={cardClass} key={card.id}>
-              <div className="image-placeholder" onClick={() => handleCardClick(card)}>
-                {card.imageUrl ? <img src={card.imageUrl} alt={`Card ${card.name}`} /> : <div>No Image</div>}
-              </div>
-              <div className="card-content" onClick={() => handleCardClick(card)}>
-                <span className="item-name">{card.name}</span>
-                <br></br>
-                <span className="item-number">{card.amount}</span>
-              </div>
-              <div className="card-actions">
-                <button onClick={(event) => handleEditClick(event, card)}>Edit</button>
-                <button onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }} className="delete-button">Delete</button>
-              </div>
-            </div>
-          );
-        })}
+  {filteredCards.map((card) => {
+    // Now use the getCardClass function to determine the class for each card
+    const cardClass = getCardClass(card.amount, card.minimum);
+
+    return (
+      <div className={cardClass} key={card.id} onClick={() => handleCardClick(card)}>
+        <div className="image-placeholder">
+          {card.imageUrl ? <img src={card.imageUrl} alt={`Card ${card.name}`} /> : 'No Image'}
+        </div>
+        <div className="card-content">
+          <span className="item-name">{card.name}</span>
+          <br></br>
+          <span className="item-number">{card.amount}</span>
+        </div>
+        <div className="card-actions">
+          <button onClick={(e) => handleEditClick(e, card)}>Edit</button>
+          <button onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }} className="delete-button">Delete</button>
+        </div>
       </div>
+    );
+  })}
+</div>
   
       {showAddItemOverlay && (
         <div className="mainOverlay">

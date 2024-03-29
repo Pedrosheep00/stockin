@@ -5,6 +5,7 @@ import logoImage from './assets/Stokin_logo.png';
 import featureImage1 from './assets/feat1.png';
 import featureImage2 from './assets/feat2.png';
 import featureImage3 from './assets/feat3.png';
+import featureImage4 from './assets/feat4.png';
 
 const FrontPage = () => {
   return (
@@ -40,6 +41,11 @@ const FrontPage = () => {
         <div className="feature-card">
           <img src={featureImage3} alt="Feature 3" />
           <h3>Colour Coding: Set a colour code to alert you when the quantity is lower than it should be</h3>
+        </div>
+
+        <div className="feature-card">
+          <h3>Only show the Low Stock items could be very useful when Restocking or making orders</h3>
+          <img src={featureImage4} alt="Feature 2" />
         </div>
 
         <Link to="/register" className="register-button-link2">

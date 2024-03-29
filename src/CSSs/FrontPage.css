@@ -32,18 +32,18 @@
 
   .front-page-header {
     text-align: center;
-    padding: 50px 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #597569;
+    height: 20vh; ;
   }
 
   .front-page-header h1 {
     font-size: 2.5rem;
-    margin-top: 5rem;
     color: #EAF4F4;
+    margin-bottom: 0.5rem;
   }
 
   .front-page-header p{
