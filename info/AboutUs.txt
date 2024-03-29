@@ -1,0 +1,38 @@
+Stokin, a software for inventory and stock management. 
+
+Stokin has a specific story of how it became from a vast idea in someone's mind to a propper software.
+My name is Pedro Nascimento, 23 years old until now (2024). I'm a brazilian guy who, in the beggining of 2019, moved to study and
+work abroad in Ireland.
+    Mid 2019 to mid 2020 I started to notice, in the different companies I used to work that they were facing a common issue, 
+    something that wasn't important enough for the owners to deal with.
+    Because of the fact that i used to jog hop in order ton get different experience in different aspects and areas of business. To 
+    compare the assets and liabilities of each company was easier. 
+    
+    In the start of the year 2020, I noticed most companies like pubs (bars), little shops (as fishmongers, and stores), and other 
+    businesses would suffer with organization when it comes to their stock, as goods in and goods out. 
+
+    The idea of Stokin came from that perspective. To create and automate a software for small businesses and start ups in order to 
+    automate their use of sheets for controlling the stocks, profits, and orders (when to order, when to not).
+
+    It took me about 4 years of study, programming related, plus business knowledge acquired along the years to actually take the idea
+    somewhere else but the mind. 
+
+    With the fact that a software had to be built for completing the graduation in programming, why not just use and apply the idea.
+    Due to lack of time, many features that were tought to enhance the user experience and make the software actually worth using 
+    won't be added in this version, but aimed for a possible future lauch of the software. 
+
+    So Basically, Stokin is a software to avoid use of paper lists and analisys of data (related to stock) daily, onece the software will 
+    give it all to the user. 
+
+    Other softwares already exist that has kind of a similar finality. some focused in the financial of the company, with business and all "Xero"
+    Other with the inventory of the company "Sortly", with a pay system for better use and access. 
+    But none with the same finality of controlling goods in and out, with supplier information attached to each product, 
+    with a dashboard to show the movement of the products within the company 
+    and colour coding for an easy viewing of low stock and mid stock. Plus it has to be free to use, because the idea is to help the 
+    businesses that are beggining and have low budgeting. 
+
+    
+
+    
+
+
