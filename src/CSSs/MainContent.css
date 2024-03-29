@@ -303,12 +303,11 @@ input[type='checkbox'] {
   -ms-transform: scale(1.5);
   -o-transform: scale(1.5);
   transform: scale(1.5);
-  margin-right: 10px; /* Spacing between the checkbox and the label */
 }
 
 .low-stock-checkbox label {
   cursor: pointer;
   font-size: 1rem;  
-  margin-left: -13vh;
   margin-bottom: 3.8vh;
+  margin-left: -13vh;
 }
