@@ -1,110 +1,106 @@
-/* src/components/Header.css */
 body {
-  margin: 0; /* Remove default margin */
-  font-family: 'Arial', sans-serif; /* Apply your chosen font */
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
 header {
-  background-color: #EAF4F4;
-  color: #597569;
-  padding: 0.5rem; /* Adjust padding as needed */
+  background-color: #EAF4F4; /* Light background for header */
+  color: #597569; /* Dark text color for readability */
+  padding: 0.5rem;
   text-align: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around ; /* Space items evenly */
   align-items: center;
-  height: 3rem; /* Adjust height as needed */
+  height: 4rem;
 }
 
 nav ul {
   list-style: none;
-  padding: 0; /* Remove default padding */
+  padding: 0;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  margin: 0; /* Remove default margin */
+  margin: 0;
 }
 
 nav li {
-  margin: 0 1rem; /* Adjust margin as needed */
+  margin: 0 1rem;
 }
 
-nav a {
+nav a, .home-link, .home-link-frontpage {
   text-decoration: none;
-  color: #597569;
+  color: #455A64; /* Darker link color for contrast */
   font-weight: bold;
-  letter-spacing: 1.5px;
 }
 
 .hamburger-icon {
-  color: #597569;
-  font-size: 24px; /* Adjust size as needed */
+  color: #455A64; /* Icon matches link color */
+  font-size: 24px;
   cursor: pointer;
 }
 
-.profile-image {
-  border-radius: 50%;
-  height: 40px; /* Adjust size as needed */
-  width: 40px; /* Adjust size as needed */
-}
-
-/* Overlay styles */
 .overlay {
-  position: fixed; /* Overlay should be positioned relative to the viewport */
+  position: fixed;
   top: 0;
-  left: 0; /* Align the overlay to the left side of the viewport */
-  width: 300px; /* Width of the overlay */
-  height: 100%; /* Make overlay take full height */
-  background-color: #F6FFF8; /* Background color for the overlay */
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5); /* Add some shadow to the right side */
-  transform: translateX(-100%); /* Start off-screen */
-  transition: transform 0.3s ease; /* Transition for the sliding effect */
-  z-index: 20; /* Adjust the z-index as needed to be higher than .add-item-overlay */
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #F6FFF8; /* Light overlay background */
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 20;
 }
 
-/* When overlay is visible */
 .overlay.visible {
-  transform: translateX(0); /* Slide in */
+  transform: translateX(0);
 }
 
-/* Style for the overlay contents */
 .overlay ul {
-  list-style-type: none; /* Remove bullet points from list items */
-  padding: 0; /* Remove padding */
-  margin:  0; /* Add some margin to top and bottom */
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
   width: 100%;
 }
 
 .overlay li {
-  padding: 20px; /* Increased padding for better spacing */
-  border-bottom: 1px solid #EEEEEE; /* Lighter border color for item separation */
-  font-size: 18px; /* Larger font size for better readability */
-  font-weight: normal; /* Normal font weight for list items */
-  color: #333333; /* Darker font color for list items */
+  padding: 20px;
+  border-bottom: 1px solid #EEEEEE;
+  color: #333333; /* Dark text for overlay items */
 }
 
-/* Style for the sign-out button */
 .sign-out {
-  background-color: #FF3333; /* Brighter red for the button */
+  background-color: #FF3333; /* Sign out button in red for attention */
   color: white;
-  padding: 15px 20px; /* Padding to increase button size */
-  margin-top: 20px; /* Margin at the top to separate from the list */
-  border: none; /* Remove any default border */
-  font-size: 18px; /* Font size to match the list items */
-  font-weight: bold; /* Bold font weight for the button text */
-  text-transform: uppercase; /* Uppercase text for the button */
-  border-radius: 5px; /* Rounded corners for the button */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  padding: 15px 20px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
 }
 
-/* Additional styles for responsive design or other elements can be added here */
 .overlay li a {
-  color: inherit; /* Ensuring anchor tags inherit the color from the list item */
-  text-decoration: none; /* No underline for the anchor tags */
-  display: block; /* Block display for full width clickable area */
+  color: inherit;
+  text-decoration: none;
+  display: block;
 }
 
-h1{
-  font-size: 30px;
-  color: #597569;
-  
+.profile-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%    ; /* Makes the image round */
+  object-fit: cover; /* Ensures the image covers the space without distortion */
+  cursor: pointer; /* Indicates the image is clickable */
+  border: 2px solid #455A64; /* Dark border for contrast */
+  margin: 0 1rem;
+  margin-top: 3px;
+}
+
+.home-link-red {
+  background-color: #597569;
+  color: #EAF4F4;
+  padding: 5px;
+  display: inline-block;
 }

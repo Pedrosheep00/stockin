@@ -1,0 +1,102 @@
+/* ProfilePage.css */
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #EAF4F4;
+  padding: 50px 0; /* Add padding to the top and bottom */
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 80%; /* Set a max width */
+  max-width: 500px; /* Or any other max width */
+}
+
+.profile-image-placeholder {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #597569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* This property is critical to keep the image within the circle */
+  background-color: white;
+  margin-bottom: 30px; /* Add space below the image placeholder */
+}
+
+.profile-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will cover the area without stretching the image */
+}
+
+.profile-input,
+.profile-submit,
+.profile-file-input {
+  width: 100%; /* Full width */
+  padding: 15px 20px; /* More padding for larger touch area */
+  margin: 10px 0; /* Add margin to the top and bottom */
+  border-radius: 25px; /* More rounded edges */
+  border: 2px solid #597569; /* Border color */
+  background-color: transparent; /* Transparent background */
+}
+
+.profile-submit {
+  background-color: #597569; /* Button color */
+  color: white;
+  font-size: 1rem; /* Larger font size */
+  letter-spacing: 1px; /* Letter spacing */
+  font-weight: bold; /* Bold font */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-submit:hover {
+  background-color: #455A64; /* Darker shade on hover */
+}
+
+.profile-file-input {
+  cursor: pointer;
+}
+
+/* Hide the default file input style and make it look like a button */
+.profile-file-input::file-selector-button {
+  background-color: #597569;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+/* Style for the text of the chosen file */
+.profile-file-input::file-selector-button::after {
+  content: 'Choose file';
+  font-size: 1rem;
+  color: #FFF;
+}
+
+/* Additional styles as needed */
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .profile-form {
+      width: 95%;
+  }
+
+  .profile-input,
+  .profile-submit,
+  .profile-file-input {
+      padding: 10px 15px;
+  }
+}
