@@ -43,6 +43,7 @@ body {
 .card-content {
   padding: 10px;
   text-align: center;
+  color: #597569;
 }
 
 .item-name, .item-number {
