@@ -1,0 +1,14 @@
+/* About Page CSS */
+.content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin-top: 5vh;
+    padding: 0 20vh;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    line-height:  1.5;
+}
+/* Add your styles here */

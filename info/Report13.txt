@@ -1,7 +1,6 @@
 // NEXT - to do      
     DASHBOARD - to add recent activities and graphs
 
-
     - add a link to forgot your password linked to the email address.    
 
     - cookies for the page
@@ -31,9 +30,7 @@
     - Supplier button 
         - add supplier name 
         - supplier form of contact
-        - supplier method of ordering 
-
-    
+        - supplier method of ordering     
 
     - DASHBOARD 
         - think about the scheme 
@@ -43,5 +40,5 @@
         - how many items
         - how many categories  
 
-        
+
    

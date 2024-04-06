@@ -92,12 +92,20 @@ const MainComponent = () => {
   });
 
   const handleDeleteCard = async (cardId) => {
-      if (window.confirm("Are you sure you want to delete this item?")) {
+    const cardToDelete = cards.find(card => card.id === cardId);
+    if (cardToDelete && window.confirm("Are you sure you want to delete this item?")) {
+      try {
         const cardDocRef = doc(firestore, "cards", cardId);
         await deleteDoc(cardDocRef);
         setCards(cards.filter((card) => card.id !== cardId));
+        logActivity('Item Deleted', `Deleted ${cardToDelete.amount} units of ${cardToDelete.name}`);
+      } catch (error) {
+        console.error("Error deleting card: ", error);
+        // Optionally, log this error in your activities.
       }
+    }
   };
+  
 
 
   const handleFileChange = async (event) => {
@@ -160,24 +168,19 @@ const MainComponent = () => {
       console.error("Card not found");
     }
   };
-  
-  const logActivity = async (action, details) => {
-    if (!user) return;
-  
-    // Create an activity object
-    const activity = {
-      userId: user.uid,
-      action,
-      details,
-      timestamp: new Date() // Firestore will convert this to a Timestamp
-    };
-  
-    // Add the activity to Firestore
-    try {
-      await addDoc(collection(firestore, 'activities'), activity);
-      console.log('Activity logged:', activity);
-    } catch (error) {
-      console.error('Error logging activity:', error);
+  const logActivity = async (action, detail) => {
+    if (user) {
+      const activity = {
+        action: action,
+        detail: detail,
+        timestamp: new Date(), // Firestore will convert this to a Timestamp
+        userId: user.uid,
+      };
+      try {
+        await addDoc(collection(firestore, "activities"), activity);
+      } catch (error) {
+        console.error("Error logging activity: ", error);
+      }
     }
   };
 

@@ -11,6 +11,7 @@ import Login from './Login';
 import Register from './Register';
 import ProfilePage from './ProfilePage';
 import Dashboard from './Dashboard';
+import About from './About';
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       {showHeaderFooter && <Footer />}

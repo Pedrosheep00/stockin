@@ -99,8 +99,9 @@ nav a, .home-link, .home-link-frontpage {
 }
 
 .home-link-red {
-  background-color: #597569;
-  color: #EAF4F4;
+  background-color: #59756962;
+  color: #597569;
   padding: 5px;
   display: inline-block;
+  border: 1px solid #597569;
 }
