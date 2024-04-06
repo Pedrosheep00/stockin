@@ -31,6 +31,7 @@ const MainComponent = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [lowStockOnly, setLowStockOnly] = useState(false);
   const [showSupplierOverlay, setShowSupplierOverlay] = useState(false);
+  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {

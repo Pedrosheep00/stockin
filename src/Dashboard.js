@@ -5,6 +5,9 @@ import './CSSs/Dashboard.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase';
 import { logActivity } from './logActivity';
+import { format } from 'date-fns';
+import { serverTimestamp } from 'firebase/firestore';
+import { addDoc } from 'firebase/firestore'; // Remove the import for 'collection'
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -13,6 +16,7 @@ const Dashboard = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [grossProfitMargin, setGrossProfitMargin] = useState(0);
   const [recentActivities, setRecentActivities] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   
 
   useEffect(() => {
@@ -52,11 +56,28 @@ const Dashboard = () => {
           collection(firestore, "activities"),
           where("userId", "==", user.uid),
           orderBy("timestamp", "desc"),
-          limit(5)
+          limit(4) // limits the query to the last 4 activities
         );
         const activitiesSnapshot = await getDocs(activitiesQuery);
         const activities = activitiesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setRecentActivities(activities);
+      }
+    };
+    
+    const logActivity = async (userId, action, details, itemId) => {
+      const newActivity = {
+        action,
+        details,
+        itemId,
+        timestamp: serverTimestamp(),
+        userId
+      };
+
+    
+      try {
+        await addDoc(collection(firestore, 'activities'), newActivity);
+      } catch (error) {
+        console.error('Error logging activity: ', error);
       }
     };
 
@@ -75,18 +96,19 @@ return (
             <div className="stat-box">Gross Profit Margin: {grossProfitMargin.toFixed(2)}%</div>
         </div>
         <div className="recent-activity">
-            <h3>Recent Activity</h3>
-            <ul>
-                {recentActivities.map((activity, index) => (
-                <li key={index}>
-                    {/* Example of how you might display the activity details */}
-                    <p>Action: {activity.action}</p> {/* Replace with actual property names */}
-                    <p>Timestamp: {activity.timestamp?.toDate().toLocaleString()}</p> {/* Format the timestamp */}
-                    {/* Include any other relevant activity details */}
-                </li>
-                ))}
-            </ul>
-        </div>
+      <h3>Recent Activity</h3>
+      <ul>
+      {recentActivities.map((activity, index) => (
+        <li key={index}>
+          <div><strong>Action:</strong> {activity.action}</div>
+          <div><strong>Date:</strong> {format(new Date(activity.timestamp.seconds * 1000), 'PPPpp')}</div>
+          <div><strong>Details:</strong> {activity.detail}</div> 
+          {activity.itemId && <a href={`/items/${activity.itemId}`}>View Item</a>}
+  </li>
+))}
+
+      </ul>
+    </div>
 
         <div className="graphs-section">
             {/* Placeholder for graphs */}
