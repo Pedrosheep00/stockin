@@ -9,6 +9,7 @@ import Categories from './Categories';
 import CategoryItemsPage from './CategoryItemsPage';
 import Login from './Login';
 import Register from './Register';
+import ProfilePage from './ProfilePage';
 
 function App() {
   const location = useLocation();
@@ -20,11 +21,12 @@ function App() {
       {showHeaderFooter && <Header />}
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/home" element={<MainContent />} /> // New route for MainContent
+        <Route path="/home" element={<MainContent />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:categoryName" element={<CategoryItemsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       {showHeaderFooter && <Footer />}

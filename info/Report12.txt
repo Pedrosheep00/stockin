@@ -49,7 +49,7 @@
         - delete item 
         - search engine
 
-    - add delete button to the card info overlay and edit. 
+    - add delete button to the card info overlay and edit.
 
     - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
 
@@ -65,8 +65,11 @@
     - cookies for the page
 
     - About us page 
+        - to finish and reorganize the draft.
+        - create the js and css pages .
+        - link them in the propper links.
 
-    - contact the server (CONTACT page)
+    - contact the server(me) (CONTACT page)
 
 
 

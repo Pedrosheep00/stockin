@@ -1,7 +1,6 @@
-// src/components/Login.js
 import React, { useState, useEffect } from 'react';
 import { auth } from './firebase'; // Adjust the import path as necessary
-import './CSSs/Login.css'; // Ensure CSS styling is consistent with Register.css
+import './CSSs/Login.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -9,11 +8,12 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                navigate('/main'); // Redirect if user is already signed in
+                navigate('/home'); // Redirect if user is already signed in
             }
         });
         return () => unsubscribe(); // Cleanup subscription
@@ -21,11 +21,15 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault(); // Prevent the default form submission
+        if (!email || !password) {
+            setError('Please enter both email and password');
+            return;
+        }
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/main'); // Redirect after successful login
+            navigate('/home'); // Redirect after successful login
         } catch (error) {
-            console.error('Error logging in:', error.message);
+            setError('Error logging in: ' + error.message);
         }
     };
 
@@ -35,9 +39,9 @@ const Login = () => {
                 <h3>Inventory Management System</h3>
                 <nav>
                     <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Contact</li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
                     </ul>
                 </nav>
             </div>
@@ -50,6 +54,7 @@ const Login = () => {
 
                 <div className="login-square">
                     <h2>Login</h2>
+                    {error && <p className="error-message">{error}</p>}
                     <form onSubmit={handleLogin}>
                         <div>
                             <label>Email:</label>
@@ -63,7 +68,7 @@ const Login = () => {
                     </form>
                     <div className="signup-link">
                         <p>Don't have an account?</p>
-                        <button onClick={() => navigate('/register')}>Sign up</button>
+                        <Link to="/register">Sign up</Link>
                     </div>
                 </div>
             </div>

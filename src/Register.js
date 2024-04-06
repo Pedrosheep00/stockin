@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import './CSSs/Register.css';
 import { useNavigate } from 'react-router-dom';
+import login_page_image from './assets/login_page_image.png';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,12 +11,11 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const auth = getAuth();
     try {
-      const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
-      await user.updateProfile({
-        displayName: `${firstName} ${lastName}`,
-      });
+      await createUserWithEmailAndPassword(auth, email, password);
       navigate('/login');
     } catch (error) {
       console.error('Error registering:', error.message);
@@ -29,48 +28,34 @@ const Register = () => {
         <h3>Inventory Management System</h3>
         <nav>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
       </div>
 
       <div className="mid_Content">
-        <img
-          src={
-            'https://firebasestorage.googleapis.com/v0/b/stokin-try1.appspot.com/o/login_page_image.png?alt=media&token=32d41007-fb71-4aa3-9644-f82fead90f24'
-          }
-          alt="Inventory Management System"
-        />
-
+        <img src={login_page_image} alt="Inventory Management System" />
         <div className="register-square">
           <h2>Register</h2>
           <form onSubmit={handleRegister}>
-            <label>First Name:</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <label>Last Name:</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div>
+              <label>First Name:</label>
+              <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+            </div>
+            <div>
+              <label>Last Name:</label>
+              <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            </div>
+            <div>
+              <label>Email:</label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
             <button className="RegisterBtn" type="submit">Register</button>
           </form>
           <div className="signup-link">

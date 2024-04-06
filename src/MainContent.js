@@ -1,40 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import { auth, firestore, storage } from './firebase';
-import { collection, query, where, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc
+} from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './CSSs/MainContent.css';
 
-export const MainComponent = () => {
+const MainComponent = () => {
   const [cards, setCards] = useState([]);
-  const [newCardData, setNewCardData] = useState({ imageUrl: '', name: '', amount: '', minimum: '', category: '' });
+  const [newCardData, setNewCardData] = useState({
+    imageUrl: '',
+    name: '',
+    amount: '',
+    minimum: '',
+    category: ''
+  });
   const [showAddItemOverlay, setShowAddItemOverlay] = useState(false);
   const [showCardInfoOverlay, setShowCardInfoOverlay] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [user, setUser] = useState(null);
-  const [categories, setCategories] = useState([]); // Changed to categories and initialized as an array
+  const [categories, setCategories] = useState([]);
   const [showEditItemOverlay, setShowEditItemOverlay] = useState(false);
   const [editingCard, setEditingCard] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [lowStockOnly, setLowStockOnly] = useState(false);
 
-    useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(async (user) => {
-        setUser(user);
-        if (user) {
-          await fetchData(user.uid);
-          await fetchCategories();
-        }
-      });
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setUser(user);
+      if (user) {
+        await fetchData(user.uid);
+        await fetchCategories(user.uid);
+      }
+    });
 
-      return () => unsubscribe();
-    }, []);
+    return () => unsubscribe();
+  }, []);
 
-    const fetchData = async (userId) => {
-      const userCardsCollection = collection(firestore, 'cards');
-      const q = query(userCardsCollection, where('userId', '==', userId));
-      const querySnapshot = await getDocs(q);
-      setCards(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-    };
+  const fetchData = async (userId) => {
+    const q = query(collection(firestore, "cards"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+    setCards(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+  };
+
+  const fetchCategories = async (userId) => {
+    const q = query(collection(firestore, "Categories"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+    setCategories(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+  };
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
   const handleLowStockChange = (e) => setLowStockOnly(e.target.checked);
@@ -53,10 +73,6 @@ export const MainComponent = () => {
       }
   };
 
-  const fetchCategories = async () => {
-      const querySnapshot = await getDocs(collection(firestore, 'Categories'));
-      setCategories(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-  };
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];

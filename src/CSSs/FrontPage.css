@@ -11,6 +11,7 @@
 .front-page-nav {
     width: 100%;
     background: #EAF4F4;
+    color: #597569  ;
     padding: 10px 20px;
     display: flex;
     justify-content: space-around;
@@ -27,7 +28,10 @@
     display: flex;
     align-items: center; /* Align nav links vertically in the center */
     gap: 30px; /* Adjust the space between nav items */
-    
+}
+
+.nav-links a {
+  color: #597569;
 }
 
   .front-page-header {

@@ -1,18 +1,125 @@
-body{
-    color: #597569;
+body {
+  color: #597569;
+  background-color: #CCE3DE; /* Background color to match MainContent */
+  font-family: 'Arial', sans-serif;
 }
-.cards-container{
-    min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* This will spread the cards nicely */
-    gap: 20px; /* Adjust the gap as needed */
-    padding: 20px; /* Add padding if necessary */
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px; /* Constraint cards to center of the page */
+  margin: auto; /* Center the cards container */
+  min-height: 100vh;
 }
-h2{
-    text-align: center;
-    margin: 20px 0;
-    font-size: 1.6rem;
-    letter-spacing: 1px;
-    font-weight: lighter;
+
+.card {
+  background-color: #F6FFF8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  cursor: pointer; /* Indicates the card is clickable */
+  max-height: 50vh;
 }
+
+.card:hover {
+  transform: scale(1.15);
+  z-index: 10; /* Ensure card is above others when scaling */
+}
+
+.image-placeholder img {
+  max-width: 100%;
+  max-height: 250px; /* Adjust to your preference */
+  object-fit: cover; /* Ensures image covers the area */
+}
+
+.card-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.item-name, .item-number {
+  font-size: 1rem;
+  color: #597569;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  font-weight: lighter;
+}
+
+/* Add the color-coded background classes here, similar to those in MainContent.css if needed */
+.card-normal { background-color: #F6FFF8; }
+.card-warning { background-color: rgba(255, 255, 0, 0.675); color:#597569;}
+.card-danger { background-color: rgba(255, 89, 89, 0.727); color: #597569; }
+
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%; /* Full width on smaller screens */
+  }
+}
+
+.category-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.category-card-info-content {
+  background-color: #F6FFF8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-overlay .category-card-info-content img {
+  width: 100%; /* Ensure the image does not exceed the width of its container */
+  max-height: 300px; /* Adjust this value to manage the image's height */
+  object-fit: contain; /* This will make sure the image is scaled properly within its box */
+  margin-bottom: 20px; /* Optional: Adds some space below the image */
+}
+
+.delete-category-button {
+  background-color: #ff4d4d; /* Red background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 10px; /* Space from the category name */
+  transition: background-color 0.2s;
+}
+
+.delete-category-button:hover {
+  background-color: #cc0000; /* Darker shade on hover */
+}
+  

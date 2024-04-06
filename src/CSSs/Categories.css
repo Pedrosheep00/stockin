@@ -1,4 +1,7 @@
-/* Categories.css */
+.App {
+  background-color: #EAF4F4;
+}
+
 .categories-container {
   display: flex;
   flex-wrap: wrap;
@@ -7,41 +10,44 @@
   min-height: 100vh;
   padding: 20px;
 }
+
 .category-card {
   width: 200px;
-  height: 300px; /* Fixed height */
+  height: 300px;
   padding: 10px;
   background-color: #F6FFF8;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  overflow: hidden; /* Ensures that the image does not overflow the card */
-  transition: transform 0.3s ease; /* Smooth transition for transform changes */
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
+
 .category-card:hover {
-  transform: scale(1.15); /* Slightly enlarge the card on hover */
-  z-index: 10; /* Ensure the card is above others when scaling up */
+  transform: scale(1.15);
+  z-index: 10;
 }
 
 .category-image {
-  max-width: 100%; /* Ensure the image is not wider than the card */
-  max-height: 150px; /* Maximum height of the image */
-  width: auto; /* Maintain the aspect ratio */
-  height: auto; /* Maintain the aspect ratio */
-  object-fit: cover; /* Cover the area of the card reserved for the image */
-  padding: 2rem ;
+  max-width: 100%;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
 }
 
+.category-info {
+  text-align: center;
+  width: 100%; /* Ensure text and button are aligned properly */
+}
 
 .category-name {
   font-size: 1.2rem;
   color: #597569;
   margin: 5px 0;
-  text-align: end;
-  
 }
 
 .add-category-container {
@@ -60,6 +66,23 @@ button {
   color: #F6FFF8;
   font-size: 1rem;
   margin-top: 3rem;
+  transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+}
+
+/* Specific styles for the delete button */
+.delete-category-button {
+  background-color: #FF4D4D;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.delete-category-button:hover {
+  background-color: #D43D3D;
 }
 
 .overlayAddCategories {
@@ -84,7 +107,6 @@ button {
   align-items: center;
 }
 
-/* Style for the form elements within the overlay */
 .overlay-content form {
   display: flex;
   flex-direction: column;
@@ -92,7 +114,7 @@ button {
 }
 
 .overlay-content img {
-  max-width: 100px; /* Adjust as needed */
+  max-width: 100px;
   margin-top: 10px;
   border-radius: 5px;
 }

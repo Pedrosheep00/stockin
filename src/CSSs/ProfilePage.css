@@ -1,0 +1,96 @@
+/* ProfilePage.css */
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 5vh; /* Adjust as needed */
+  padding-bottom: 5vh; /* Adjust as needed */
+  background-color: #EAF4F4;
+  min-height: 90vh;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-gap: 20px;
+  width: 80%; /* Adjust based on your design */
+  max-width: 500px;
+  margin-top: 5vh; /* Adjust as needed */
+  margin-bottom: 5vh; /* Adjust as needed */
+}
+
+.profile-image-placeholder {
+  grid-column: 1 / -1; /* Span across all columns */
+  justify-self: center;
+  width: 150px; /* Match the design size */
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #597569;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.profile-image-placeholder img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.profile-input,
+.profile-submit,
+.profile-file-input {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #597569;
+  background-color: #CCE3DE;
+}
+
+.profile-submit {
+  grid-column: 1 / -1; /* Span across all columns */
+  justify-self: center;
+  background-color: #597569;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-submit:hover {
+  background-color: #455A64;
+}
+
+.profile-file-input {
+  grid-column: 1 / -1; /* Span across all columns */
+  justify-self: center;
+  cursor: pointer;
+}
+
+.profile-file-input::file-selector-button {
+  background-color: #597569;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.profile-file-input::file-selector-button::after {
+  content: 'Choose file';
+  color: #FFF;
+}
+
+@media (max-width: 768px) {
+  .profile-form {
+    grid-template-columns: 1fr; /* One column on small screens */
+  }
+}
+.profile-detail {
+  background-color: rgba(204, 227, 222, 0.3); /* Light green background with transparency */
+  color: #597569; /* Dark green text color */
+  border: 2px solid #597569; /* Dark green border */
+  padding: 30px; /* Spacing inside the boxes */
+  margin: 1vh; /* Spacing outside the boxes */
+  border-radius: 10px; /* Rounded corners */
+  width: calc(50% - 24px); /* Full width minus the padding and border */
+}

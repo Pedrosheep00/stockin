@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { auth } from './firebase'; 
+import { auth } from './firebase'; // Ensure this path is correct
 import { signOut } from 'firebase/auth';
-import './CSSs/Header.css'; 
+import './CSSs/Header.css'; // Ensure this path is correct
+import { useUser } from './UserContext'; // Import the useUser hook
+import defaultProfileImage from './assets/profile_image.jpg'; 
 
 function Header() {
   const [overlayVisible, setOverlayVisible] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { user, userProfile } = useUser(); // Use the useUser hook to access user and userProfile
 
   useEffect(() => {
-    // Function to close the overlay if clicked outside
     const handleOutsideClick = (event) => {
-      if (event.target.closest('.hamburger-icon')) return; // Ignore clicks on hamburger icon
+      if (event.target.closest('.hamburger-icon')) return;
       if (!event.target.closest('.overlay')) {
         setOverlayVisible(false);
       }
     };
 
-    // If the overlay is visible, then listen for outside clicks
     if (overlayVisible) {
       window.addEventListener('click', handleOutsideClick);
     }
 
-    // Cleanup function to remove the listener
     return () => window.removeEventListener('click', handleOutsideClick);
-  }, [overlayVisible]); // Only re-run the effect if overlayVisible changes
-
+  }, [overlayVisible]);
 
   const handleLogout = async () => {
     try {
@@ -37,6 +37,8 @@ function Header() {
       console.error('Logout Error', error);
     }
   };
+
+  const isFrontPage = location.pathname === '/';
 
   return (
     <header>
@@ -51,19 +53,24 @@ function Header() {
           <li><Link to="/about" onClick={() => setOverlayVisible(false)}>Staff</Link></li>
           <li><Link to="/categories" onClick={() => setOverlayVisible(false)}>Categories</Link></li>
           <li><Link to="/contact" onClick={() => setOverlayVisible(false)}>Insights</Link></li>
-          <li><Link to="/contact" onClick={() => setOverlayVisible(false)}>Settings</Link></li>
-
-
+          <li><Link to="/settings" onClick={() => setOverlayVisible(false)}>Settings</Link></li>
           <li><button className="sign-out" onClick={handleLogout}>Log Out</button></li>
         </ul>
       </div>
-      <img src="path_to_your_image.jpg" alt="Profile" className="profile-image" />
+      
+      <Link to={user ? "/profile" : "/login"}>
+        <img src={userProfile?.imageUrl || defaultProfileImage} alt="Profile" className="profile-image" />
+        
+      </Link>
+      
       <h1>Inventory Management System</h1>
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/" className={isFrontPage ? 'home-link-frontpage' : 'home-link'}>Home</Link></li>
+          <li><Link to="/about" className='home-link'>About</Link></li>
+          <li><Link to="/contact" className='home-link'>Contact</Link></li>
+          <li><Link to="/home" className='home-link home-link-red'>Inventory</Link></li>
+
         </ul>
       </nav>
     </header>
