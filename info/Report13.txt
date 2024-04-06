@@ -1,22 +1,9 @@
 // NEXT - to do      
-    
+    DASHBOARD - to add recent activities and graphs
 
-    - DASHBOARD 
-        - think about the scheme 
-        - what data to display?
-        - how can it be useful for the user
-        - Add buying price and selling price scheme  
-        - how many items
-        - how many categories  
-   
 
     - add a link to forgot your password linked to the email address.    
 
-    - fix buttons in the login and register pages (list bar)
-            
-    
-       
-    
     - cookies for the page
 
     - About us page 
@@ -26,7 +13,7 @@
 
     - contact the server(me) (CONTACT page)
 
-    - - adjust FrontPage with all the recently added feautures before uploading
+    - adjust FrontPage with all the recently added feautures before uploading
 
    //-------------Done:--------------------------
 
@@ -45,3 +32,16 @@
         - add supplier name 
         - supplier form of contact
         - supplier method of ordering 
+
+    
+
+    - DASHBOARD 
+        - think about the scheme 
+        - what data to display?
+        - how can it be useful for the user
+        - Add buying price and selling price scheme  
+        - how many items
+        - how many categories  
+
+        
+   

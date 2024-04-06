@@ -17,6 +17,8 @@ const MainComponent = () => {
       contact: '',
       email: '',
       description: '',
+      sellingPrice: '',
+      buyingPrice: '',
     },
   });
   const [showAddItemOverlay, setShowAddItemOverlay] = useState(false);
@@ -55,7 +57,7 @@ const MainComponent = () => {
 
   const handleAddCard = async (event) => {
     event.preventDefault();
-    if (!newCardData.name || !newCardData.amount || !newCardData.imageUrl || !user || !newCardData.category || !newCardData.minimum) {
+    if (!newCardData.name || !newCardData.amount || !newCardData.imageUrl || !user  || !newCardData.minimum) {
       alert('Please fill in all fields and select a category before submitting.');
       return;
     }
@@ -64,13 +66,17 @@ const MainComponent = () => {
     const newItem = {
       ...newCardData,
       userId,
+      sellingPrice: parseFloat(newCardData.sellingPrice),
+      buyingPrice: parseFloat(newCardData.buyingPrice),
     };
 
     try {
       const docRef = await addDoc(collection(firestore, 'cards'), newItem);
       setCards([...cards, { id: docRef.id, ...newItem }]);
-      setNewCardData({ imageUrl: '', name: '', amount: '', minimum: '', category: '', supplierInfo: { name: '', contact: '', email: '', description: '', } }); // Reset form
+      setNewCardData({ imageUrl: '', name: '', amount: '', minimum: '', category: '', supplierInfo: { name: '', contact: '', email: '', description: '', sellingPrice: '', buyingPrice: '' } }); // Reset form
       setShowAddItemOverlay(false); // Close overlay
+      logActivity('Item Added', `Added ${newItem.amount} units of ${newItem.name}`);
+
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -155,6 +161,25 @@ const MainComponent = () => {
     }
   };
   
+  const logActivity = async (action, details) => {
+    if (!user) return;
+  
+    // Create an activity object
+    const activity = {
+      userId: user.uid,
+      action,
+      details,
+      timestamp: new Date() // Firestore will convert this to a Timestamp
+    };
+  
+    // Add the activity to Firestore
+    try {
+      await addDoc(collection(firestore, 'activities'), activity);
+      console.log('Activity logged:', activity);
+    } catch (error) {
+      console.error('Error logging activity:', error);
+    }
+  };
 
   const handleSaveSupplierInfo = async () => {
     if (!editingCard) return; // Make sure you have a card selected for editing
@@ -198,6 +223,8 @@ const MainComponent = () => {
       minimum: editingCard.minimum,
       category: editingCard.category,
       imageUrl: editingCard.imageUrl,
+      sellingPrice: parseFloat(editingCard.sellingPrice),
+      buyingPrice: parseFloat(editingCard.buyingPrice),
       // Ensure supplier info is included in updates
       supplierInfo: editingCard.supplierInfo || {}, // Default to an empty object if not set
     };
@@ -207,8 +234,12 @@ const MainComponent = () => {
       const updatedCards = cards.map(card => card.id === editingCard.id ? { ...card, ...cardUpdateData } : card);
       setCards(updatedCards);
       setShowEditItemOverlay(false); // Close the edit overlay
+      // Log the edit action
+      logActivity('Item Edited', `Edited ${editingCard.amount} units of ${editingCard.name}`);
+
     } catch (error) {
       console.error("Error updating card: ", error);
+      // Optionally, you could also log this error in your activities with a different message.
     }
   };
 
@@ -308,6 +339,8 @@ const MainComponent = () => {
               <input type="text" placeholder="Name" name="name" value={newCardData.name} onChange={handleInputChange} />
               <input type="number" placeholder="Amount" name="amount" value={newCardData.amount} onChange={handleInputChange} />
               <input type="number" placeholder="Minimum Amount" name="minimum" value={newCardData.minimum} onChange={handleInputChange} />
+              <input type="number" placeholder="Selling Price"name="sellingPrice" value={newCardData.sellingPrice}onChange={handleInputChange}/>
+              <input type="number" placeholder="Buying Price"name="buyingPrice" value={newCardData.buyingPrice}onChange={handleInputChange}/>
               <select name="category" value={newCardData.category} onChange={handleInputChange}>
                 <option value="">Select a category</option>
                 {categories.map((cat) => (
@@ -366,6 +399,8 @@ const MainComponent = () => {
                   <input type="text" name="name" value={editingCard.name} onChange={handleEditInputChange} placeholder="Name" />
                   <input type="number" name="amount" value={editingCard.amount} onChange={handleEditInputChange} placeholder="Amount" />
                   <input type="number" name="minimum" value={editingCard.minimum} onChange={handleEditInputChange} placeholder="Minimum Amount" />
+                  <input type="number" name="sellingPrice" value={editingCard.sellingPrice} onChange={handleEditInputChange} placeholder="Selling Price" /> 
+                  <input type="number" name="buyingPrice" value={editingCard.buyingPrice} onChange={handleEditInputChange} placeholder="Buying Price" />
                   <br></br>
                   <select name="category" value={editingCard.category} onChange={handleEditInputChange}>
                     <option value="">Select a category</option>
