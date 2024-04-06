@@ -1,10 +1,6 @@
 // NEXT - to do 
 
-    1- adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
-
-    - set up profile page (to add info about the user and a profile picture)
-
-    
+        
     - Supplier button 
         - add supplier name 
         - supplier form of contact
@@ -14,30 +10,18 @@
         - think about the scheme 
         - what data to display?
         - how can it be useful for the user 
+   
 
-    - add a button to delete one category
-
-    - add a link to forgot your password linked to the email address.
-
-    
+    - add a link to forgot your password linked to the email address.    
 
     - fix buttons in the login and register pages (list bar)
-
-    - adjust the CategoryItemsPage to be functional
-        - info buttons
-        - edit buttons
-        - colour coding
-        - add item 
-        - delete item 
-        - search engine
+    
 
     - add delete button to the card info overlay and edit.
 
     - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
 
-    - add AddItem button to the CategoryItemsPage
-
-    - (TO CONSIDER )
+        - (TO CONSIDER )
         - Add buying price and selling price scheme  
         - STAFF CONTROL 
     
@@ -50,4 +34,24 @@
 
     - contact the server(me) (CONTACT page)
 
-    - - adjust FrontPage with all the recently added feautures
+    - - adjust FrontPage with all the recently added feautures before uploading
+
+    - adjust the CategoryItemsPage to be functional
+        - edit buttons
+        - colour coding
+        - add item 
+        - delete item 
+        - search engine 
+
+    //-------------Done:--------------------------
+
+    - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
+
+    - set up profile page (to add info about the user and a profile picture)
+
+    - add AddItem button to the CategoryItemsPage
+
+    - adjust the CategoryItemsPage to be functional
+        - info buttons
+
+    - add a button to delete one category

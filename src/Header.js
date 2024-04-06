@@ -60,6 +60,7 @@ function Header() {
       
       <Link to={user ? "/profile" : "/login"}>
         <img src={userProfile?.imageUrl || defaultProfileImage} alt="Profile" className="profile-image" />
+        
       </Link>
       
       <h1>Inventory Management System</h1>

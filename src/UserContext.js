@@ -15,29 +15,24 @@ export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
-    // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log("User state changed: ", user);
       setUser(user);
       if (user) {
-        // Fetch the user profile from Firestore
         const userProfileRef = doc(firestore, 'userProfiles', user.uid);
         const userProfileDoc = await getDoc(userProfileRef);
         if (userProfileDoc.exists()) {
           setUserProfile(userProfileDoc.data());
         } else {
-          // Handle case where profile document does not exist
-          // This might be the place to create a default profile doc or manage a new user profile setup
           setUserProfile(null);
         }
       } else {
-        // User is signed out
         setUserProfile(null);
       }
     });
-
-    // Cleanup subscription on unmount
+  
     return () => unsubscribe();
-  }, []);
+  }, []); 
 
   return (
     <UserContext.Provider value={{ user, userProfile }}>
@@ -45,3 +40,4 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+ 

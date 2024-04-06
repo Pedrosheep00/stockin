@@ -95,7 +95,7 @@ nav a, .home-link, .home-link-frontpage {
   cursor: pointer; /* Indicates the image is clickable */
   border: 2px solid #455A64; /* Dark border for contrast */
   margin: 0 1rem;
-  margin-top: 3px;
+  margin-top: 1rem;
 }
 
 .home-link-red {

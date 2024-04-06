@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { useUser } from './UserContext';
+
 import './CSSs/FrontPage.css';
 import logoImage from './assets/Stokin_logo.png';
 import featureImage1 from './assets/feat1.png';
@@ -8,8 +9,10 @@ import featureImage2 from './assets/feat2.png';
 import featureImage3 from './assets/feat3.png';
 import featureImage4 from './assets/feat4.png';
 
+
 const FrontPage = () => {
-  const user = useUser(); // This hook provides the current user
+  const { user } = useUser(); 
+  console.log("FrontPage user state: ", user);
 
   return (
     <div className="front-page-container">
@@ -47,11 +50,11 @@ const FrontPage = () => {
           <h3>Only show the Low Stock items could be very useful when Restocking or making orders</h3>
           <img src={featureImage4} alt="Feature 4" />
         </div>
-        {!user && (
+        
           <Link to="/register" className="register-button-link2">
             <button className="register-button">Register NOW for FREE</button>
           </Link>
-        )}
+        
       </section>
 
       <footer className="front-page-footer">
@@ -63,4 +66,7 @@ const FrontPage = () => {
   );
 };
 
+
 export default FrontPage;
+
+
