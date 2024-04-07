@@ -1,14 +1,4 @@
-// NEXT - to do      
-   
-    - add a link to forgot your password linked to the email address.    
-  
-
-    - contact the server(me) (CONTACT page)
-
-    
-    
-    
-   //-------------Done:--------------------------
+//-------------Done:--------------------------
 
     - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
 
@@ -60,3 +50,6 @@
     -  - cookies for the page added
 
     --ReadMe (talk about Copilot)
+
+     - add a link to forgot your password linked to the email address.    
+  
