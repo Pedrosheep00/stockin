@@ -4,10 +4,7 @@ import { firestore } from './firebase';
 import './CSSs/Dashboard.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase';
-import { logActivity } from './logActivity';
 import { format } from 'date-fns';
-import { serverTimestamp } from 'firebase/firestore';
-import { addDoc } from 'firebase/firestore'; 
 import InventoryBarGraph from './InventoryBarGraph';
 import {
   Chart as ChartJS,
@@ -18,7 +15,6 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 import ProfitabilityGraph from './ProfitabilityGraph';  
 
 ChartJS.register(
