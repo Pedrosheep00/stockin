@@ -2,6 +2,11 @@
 
     Developed by: Pedro Eduardo Nascimento, available for download in github. NOT HOSTED, not functional to the market just yet. few additions and changes needed for future use of the software.
 
+    Note that most of the code is commented for understanding of the person reading it. 
+    But, most of the functions name already tell about what does the funtion do, so...
+    some comments were not needed.
+
+
 Here is a Mock user, created to populate some information for better avaliation of the software and its usage without much trouble:
     -   Login: example1@gmail.com
     -   password: example321

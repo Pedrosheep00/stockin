@@ -37,23 +37,23 @@ const FrontPage = () => {
       <section className="front-page-main">
         <div className="feature-card">
           <img src={featureImage1} alt="Feature 1" />
-          <h3>The inventory management tool indicated for those small businesses and start-ups.</h3>
+          <h4>The inventory management tool indicated for those small businesses and start-ups.</h4>
         </div>
         <div className="feature-card">
-          <h3>Visually dinamic DASHBOARD, a place where you can trcak your onventory numbers without much thinking. Track your Total inventory values, Profit Growth Margin and many other finance related data</h3>
+          <h4>Visually dinamic DASHBOARD, a place where you can track your inventory numbers without much thinking. Track your Total inventory values, Profit Growth Margin and many other finance related data</h4 >
           <img src={featureImage5} alt="Feature 5" />
         </div>
         <div className="feature-card">
           <img src={featureImage3} alt="Feature 3" />
-          <h3>Colour Coding: Set a colour code to alert you when the quantity is lower than it should be</h3>
+          <h4>Colour Coding: Set a colour code to alert you when the quantity is lower than it should be</h4>
         </div>
         <div className="feature-card">
-          <h3>Only show the Low Stock items could be very useful when Restocking or making orders</h3>
+          <h4>Only show the Low Stock items could be very useful when Restocking or making orders</h4>
           <img src={featureImage4} alt="Feature 4" />
         </div>
         <div className="feature-card">
           <img src={featureImage2} alt="Feature 2" />
-          <h3>Every information about your items/products in just ONE CLICK</h3>
+          <h4>Every information about your items/products in just ONE CLICK</h4>
     
         </div>
         
