@@ -30,7 +30,7 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 40%;
+    width: 30%;
     height: 50vh; /* Adjust height as needed */
     text-align: center;
     /* Placeholder for actual graph */
@@ -58,6 +58,8 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   margin: 30px 0; /* Add some margin to the top and bottom */
+  width: 70%;
+  margin-left: 12%;
 }
 
 .recent-activity h3 {
