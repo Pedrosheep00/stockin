@@ -8,7 +8,13 @@
 
     - ReadMe Page
 
-
+    - Oragize the coments in each page, and add to the ReadMefile
+        - the way AI was used during the development of each page, if not in an overall. 
+        - things to be added to the "Final Document":
+               - to coment and reorganize everything that was done in the Report13.txt
+               - organize the information better and explain it all.
+    
+    
    //-------------Done:--------------------------
 
     - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
