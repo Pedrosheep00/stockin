@@ -33,6 +33,20 @@ const Login = () => {
         }
     };
 
+    const handleForgotPassword = async () => {
+        if (!email) {
+            alert('Please enter your email address.');
+            return;
+        }
+        try {
+            await auth.sendPasswordResetEmail(email);
+            alert('Password reset email sent. Please check your inbox.');
+        } catch (error) {
+            console.error('Error sending password reset email:', error);
+            alert('Failed to send password reset email. Please try again.');
+        }
+    };
+
     return (
         <div className="Page">
             <div className="header">
@@ -65,6 +79,7 @@ const Login = () => {
                         </div>
                         <button type="submit">Login</button>
                     </form>
+                    <button className='forgotPassword' onClick={handleForgotPassword}>Forgot Password?</button>
                     <div className="signup-link">
                         <p>Don't have an account?</p>
                         <Link to="/register">Sign up</Link>
