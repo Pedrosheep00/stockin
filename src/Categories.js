@@ -12,6 +12,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
+  // Fetch categories on component mount
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
@@ -24,6 +25,7 @@ const Categories = () => {
     return () => unsubscribe();
   }, []);
 
+  // Fetch categories from Firestore
   const fetchCategories = async (userId) => {
     const q = query(collection(firestore, 'Categories'), where('userId', '==', userId));
     const querySnapshot = await getDocs(q);
@@ -32,6 +34,7 @@ const Categories = () => {
 
   const toggleOverlay = () => setOverlayVisible(!overlayVisible);
 
+  
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) {

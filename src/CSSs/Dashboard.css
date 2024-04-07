@@ -31,7 +31,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 30%;
-    height: 50vh; /* Adjust height as needed */
+    height: 50vh; 
     text-align: center;
     /* Placeholder for actual graph */
     display: flex;
@@ -73,7 +73,7 @@
 }
 
 .recent-activity li {
-  border-bottom: 1px solid #eaeaea; /* Add a subtle line between entries */
+  border-bottom: 1px solid #eaeaea; /* line between entries */
   padding: 10px 0; /* Add some padding to each entry */
 }
 
@@ -87,11 +87,11 @@
 
 .recent-activity a {
   color: #007bff; /* Add a standard link color or use your theme's color */
-  text-decoration: none; /* Optional: removes underline from links */
+  text-decoration: none; /* removes underline from links */
 }
 
 .recent-activity a:hover {
-  text-decoration: underline; /* Re-add underline on hover for clarity */
+  text-decoration: underline; /*add underline on hover for clarity */
 }
 
 /* Add responsive design as necessary, for example: */

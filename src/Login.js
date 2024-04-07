@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from './firebase'; // Adjust the import path as necessary
+import { auth } from './firebase'; 
 import './CSSs/Login.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
@@ -30,6 +30,20 @@ const Login = () => {
             navigate('/home'); // Redirect after successful login
         } catch (error) {
             setError('Error logging in: ' + error.message);
+        }
+    };
+
+    const handleForgotPassword = async () => {
+        if (!email) {
+            alert('Please enter your email address.');
+            return;
+        }
+        try {
+            await auth.sendPasswordResetEmail(email);
+            alert('Password reset email sent. Please check your inbox.');
+        } catch (error) {
+            console.error('Error sending password reset email:', error);
+            alert('Failed to send password reset email. Please try again.');
         }
     };
 
@@ -65,6 +79,7 @@ const Login = () => {
                         </div>
                         <button type="submit">Login</button>
                     </form>
+                    <button className='forgotPassword' onClick={handleForgotPassword}>Forgot Password?</button>
                     <div className="signup-link">
                         <p>Don't have an account?</p>
                         <Link to="/register">Sign up</Link>

@@ -127,15 +127,15 @@
   }
   
   .register-button {
-    background-color: #597569; /* Your primary button color */
+    background-color: #597569; /*primary button color */
     color: #FFFFFF; /* Typically white text for readability */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s; /* Smooth background color transition for hover effect */
-    padding: 10px 20px; /* Adjust padding as needed */
-    margin: 20px 0; /* Adjust margin as needed */
+    padding: 10px 20px;
+    margin: 20px 0; 
   }
   
   .register-button:hover {

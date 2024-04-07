@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+    This is Stokin App, an Inventory Management System Software, to help small business, start-ups and organizations to deal with their stock and easier visualize the data.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    Developed by: Pedro Eduardo Nascimento, available for download in github. NOT HOSTED, not functional to the market just yet. few additions and changes needed for future use of the software.
 
-## Available Scripts
+Here is a Mock user, created to populate some information for better avaliation of the software and its usage without much trouble:
+    -   Login: example1@gmail.com
+    -   password: example321
 
-In the project directory, you can run:
+    Notes:
+    -this code was developed By Pedro Nascimento with the help of teatchers from the Dorset College and the use of tools like:
+    -github
+    -figma
+    -OpenAi
+    -Coolors
+    -youtube videos
+    - and others for (font, css)
 
-### `npm start`
+Each and every unit of the software was thought and planned
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The use of AI (Chat GPT, Github Copilot):
+    Open Ai was for sure of great help during the development of this product
+    - generating specific functions, 
+    - helping and giving guidlines to reorganize each component of the code.
+    - re-styling CSS pages and adding new css.
+    - troubleshooting and debugging#
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For the fact that most pages, components, and functions where pasted and copied several times from the Ai, in order to troubleshoot or develop, it is possible that comment lines or Ai generated code remains within the project for its functionalities and help to manage.
 
-### `npm test`
+For example, some of the comments about the functionality of the cookies page was generated with help of GITHUB COPILOT
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+//About Us page:
+    when developing the About us page, Pedro wrote the text representing the story of how the software became from an idea to a project. And what is the goal of the software withing the business world.
+    Before uploading the text to the About.js component, He sent it to the Ai and copied the result modifying some bits.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    The story IS original, but with the Ai modifications the text looks more professional and appealing to the user.

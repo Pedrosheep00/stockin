@@ -66,7 +66,11 @@ const FrontPage = () => {
       <footer className="front-page-footer">
       <nav className="front-page-nav">
         <Link to="/"><img src={logoImage} alt="Stokin Logo" className="logo" /></Link>
+        
+        <h3>Contact Us:<h5 style={{ textDecoration: 'underline' }}>2000pedrosheep@gmail.com</h5></h3>
+
       </nav>
+       
       </footer>
     </div>
   );

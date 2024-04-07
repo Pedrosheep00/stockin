@@ -1,12 +1,12 @@
-/* ProfilePage.css */
+
 
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 5vh; /* Adjust as needed */
-  padding-bottom: 5vh; /* Adjust as needed */
+  padding-top: 5vh; 
+  padding-bottom: 5vh; 
   background-color: #EAF4F4;
   min-height: 90vh;
 }
@@ -15,10 +15,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two columns */
   grid-gap: 20px;
-  width: 80%; /* Adjust based on your design */
+  width: 80%; 
   max-width: 500px;
-  margin-top: 5vh; /* Adjust as needed */
-  margin-bottom: 5vh; /* Adjust as needed */
+  margin-top: 5vh;
+  margin-bottom: 5vh; 
 }
 
 .profile-image-placeholder {

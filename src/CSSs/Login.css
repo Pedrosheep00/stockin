@@ -102,3 +102,24 @@ button {
   color: #D9534F; /* Bootstrap's `btn-danger` color for errors */
   margin-bottom: 1rem; /* Space below the error message */
 }
+
+.forgotPassword {
+  background-color: #05b96b2c; /* Match the background color of the app */
+  color:  #597569; /* Match the text color of the app */
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: underline; /* Make it look more like a link */
+  display: inline-block; /* Align properly with other inline or inline-block elements */
+  margin-top: 10px; /* Add some space above the button */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.forgotPassword:hover {
+  background-color: #455A64; /* A slightly darker shade on hover */
+  text-decoration: none; /* Remove underline on hover to differentiate from the normal link behavior */
+}
+
+
