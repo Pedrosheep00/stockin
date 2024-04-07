@@ -8,6 +8,28 @@ import { logActivity } from './logActivity';
 import { format } from 'date-fns';
 import { serverTimestamp } from 'firebase/firestore';
 import { addDoc } from 'firebase/firestore'; // Remove the import for 'collection'
+import InventoryBarGraph from './InventoryBarGraph';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import ProfitabilityGraph from './ProfitabilityGraph';  
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -16,77 +38,70 @@ const Dashboard = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [grossProfitMargin, setGrossProfitMargin] = useState(0);
   const [recentActivities, setRecentActivities] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  
+  const [inputValue, setInputValue] = useState();
+  const transformCardsToChartData = (cards) => {
+    const labels = cards.map(card => card.name);
+    const data = cards.map(card => parseFloat(card.sellingPrice) - parseFloat(card.buyingPrice));
+    const backgroundColors = cards.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`);
 
-  useEffect(() => {
-    const fetchCardsAndCalculate = async () => {
-      if (user) {
-        const q = query(collection(firestore, "cards"), where("userId", "==", user.uid));
-        const querySnapshot = await getDocs(q);
-        const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        // Calculate total revenue, COGS, and items
-        let totalRevenue = 0;
-        let totalCOGS = 0;
-        let itemCount = 0;
-
-        items.forEach(item => {
-          const amount = Number(item.amount) || 0;
-          const sellingPrice = Number(item.sellingPrice) || 0;
-          const buyingPrice = Number(item.buyingPrice) || 0;
-          
-          totalRevenue += amount * sellingPrice;
-          totalCOGS += amount * buyingPrice;
-          itemCount += amount;
-        });
-
-        const grossProfit = totalRevenue - totalCOGS;
-        const grossProfitMarginPercentage = totalRevenue ? (grossProfit / totalRevenue) * 100 : 0;
-
-        setTotalInventoryValue(totalRevenue);
-        setTotalItems(itemCount);
-        setGrossProfitMargin(grossProfitMarginPercentage);
-      }
+    return {
+      labels,
+      datasets: [{
+        label: 'Profitability per Item',
+        data,
+        backgroundColor: backgroundColors,
+        hoverOffset: 4
+      }]
     };
-
+  };
+  useEffect(() => {
+    // Fetch recent activities
     const fetchRecentActivities = async () => {
-      if (user) {
-        const activitiesQuery = query(
-          collection(firestore, "activities"),
-          where("userId", "==", user.uid),
-          orderBy("timestamp", "desc"),
-          limit(4) // limits the query to the last 4 activities
-        );
+      if (!user) return;
+      
+      const activitiesQuery = query(
+        collection(firestore, "activities"),
+        where("userId", "==", user.uid),
+        orderBy("timestamp", "desc"),
+        limit(4) // Get the last 4 activities
+      );
+  
+      try {
         const activitiesSnapshot = await getDocs(activitiesQuery);
         const activities = activitiesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setRecentActivities(activities);
-      }
-    };
-    
-    const logActivity = async (userId, action, details, itemId) => {
-      const newActivity = {
-        action,
-        details,
-        itemId,
-        timestamp: serverTimestamp(),
-        userId
-      };
-
-    
-      try {
-        await addDoc(collection(firestore, 'activities'), newActivity);
       } catch (error) {
-        console.error('Error logging activity: ', error);
+        console.error('Error fetching recent activities: ', error);
       }
     };
-
+  
+    // Define the fetchCardsAndCalculate function inside useEffect if it's only used here
+    const fetchCardsAndCalculate = async () => {
+      if (!user) return;
+      
+      const q = query(collection(firestore, "cards"), where("userId", "==", user.uid));
+      try {
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setCards(items);
+          
+          // Rest of your calculations and state updates
+        } else {
+          console.log("No cards found for the user.");
+          setCards([]);
+        }
+      } catch (error) {
+        console.error('Error fetching cards: ', error);
+      }
+    };
+  
     if (user) {
       fetchCardsAndCalculate();
       fetchRecentActivities();
-      
     }
-  }, [user]);
+  }, [user]); // Dependency array to ensure these functions are called when 'user' changes
+  
 
 return (
     <div className="dashboard-container">
@@ -111,10 +126,8 @@ return (
     </div>
 
         <div className="graphs-section">
-            {/* Placeholder for graphs */}
-            <div className="graph-box">Sales Over Time Graph</div>
-            <div className="graph-box">Inventory Levels Bar Graph</div>
-            <div className="graph-box">Profitability per Item Pie Chart</div>
+          <div className="graph-box"> <InventoryBarGraph cards /> </div>
+          <div className="graph-box"> <ProfitabilityGraph cards={cards} /> </div>
         </div>
 
         <div className="data-table-section">

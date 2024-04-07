@@ -11,10 +11,12 @@
   .stat-box {
     padding: 20px;
     background-color: #f4f4f4;
+    border: 1px solid #597569;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 18%;
     text-align: center;
+    font-weight: bold;
   }
   
   .graphs-section {
@@ -28,8 +30,8 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 30%;
-    height: 300px; /* Adjust height as needed */
+    width: 40%;
+    height: 50vh; /* Adjust height as needed */
     text-align: center;
     /* Placeholder for actual graph */
     display: flex;
