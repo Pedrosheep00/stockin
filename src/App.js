@@ -1,8 +1,8 @@
-// src/App.js
+
 import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './Header';
-import FrontPage from './FrontPage'; // Make sure this is correctly imported
+import FrontPage from './FrontPage'; 
 import MainContent from './MainContent';
 import Footer from './Footer';
 import Categories from './Categories';
@@ -15,13 +15,14 @@ import About from './About';
 
 function App() {
   const location = useLocation();
-  const noHeaderFooterRoutes = ['/login', '/register', '/']; // Add the root path to routes without Header and Footer if needed
+  const noHeaderFooterRoutes = ['/login', '/register', '/']; 
   const showHeaderFooter = !noHeaderFooterRoutes.includes(location.pathname);
-
+/*--------------------routes to navigate to different pages--------------------------------*/
   return (
     <div className="App">
       {showHeaderFooter && <Header />}
       <Routes>
+        
         <Route path="/" element={<FrontPage />} />
         <Route path="/home" element={<MainContent />} />
         <Route path="/categories" element={<Categories />} />

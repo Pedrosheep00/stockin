@@ -2,10 +2,10 @@ import React, { useState, useEffect} from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { auth } from './firebase'; // Ensure this path is correct
+import { auth } from './firebase'; 
 import { signOut } from 'firebase/auth';
-import './CSSs/Header.css'; // Ensure this path is correct
-import { useUser } from './UserContext'; // Import the useUser hook
+import './CSSs/Header.css'; 
+import { useUser } from './UserContext'; 
 import defaultProfileImage from './assets/profile_image.jpg'; 
 
 function Header() {
@@ -14,6 +14,7 @@ function Header() {
   const location = useLocation();
   const { user, userProfile } = useUser(); // Use the useUser hook to access user and userProfile
 
+  // Close the overlay when clicking outside
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (event.target.closest('.hamburger-icon')) return;

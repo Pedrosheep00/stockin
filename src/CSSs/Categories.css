@@ -69,7 +69,7 @@ button {
   transition: background-color 0.2s ease; /* Smooth transition for hover effect */
 }
 
-/* Specific styles for the delete button */
+/* styles for the delete button */
 .delete-category-button {
   background-color: #FF4D4D;
   color: white;

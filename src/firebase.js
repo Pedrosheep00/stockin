@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth, signOut } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
-
+//  web app's Firebase configuration
 const firebaseConfig ={
   apiKey: "AIzaSyBaEogYIRsIFEl_2wQq2X7rigAAdpMeIBU",
   authDomain: "stokin-try1.firebaseapp.com",

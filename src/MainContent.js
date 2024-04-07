@@ -4,6 +4,9 @@ import { collection, query, where, addDoc, getDocs, doc, updateDoc, deleteDoc } 
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './CSSs/MainContent.css';
 
+// MainComponent function. This is the main component that will be rendered in the App component. With the cards that will represent each item
+
+
 const MainComponent = () => {
   const [cards, setCards] = useState([]);
   const [newCardData, setNewCardData] = useState({
@@ -32,7 +35,7 @@ const MainComponent = () => {
   const [lowStockOnly, setLowStockOnly] = useState(false);
   const [showSupplierOverlay, setShowSupplierOverlay] = useState(false);
   
-
+// useEffect hook to fetch data from Firestore when the component mounts
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setUser(user);
@@ -102,7 +105,6 @@ const MainComponent = () => {
         logActivity('Item Deleted', `Deleted ${cardToDelete.amount} units of ${cardToDelete.name}`);
       } catch (error) {
         console.error("Error deleting card: ", error);
-        // Optionally, log this error in your activities.
       }
     }
   };
@@ -186,7 +188,7 @@ const MainComponent = () => {
   };
 
   const handleSaveSupplierInfo = async () => {
-    if (!editingCard) return; // Make sure you have a card selected for editing
+    if (!editingCard) return; // Ensure editingCard is set before proceeding
   
     // Construct the updated supplier info object from your form state or refs
     const updatedSupplierInfo = {
@@ -211,7 +213,7 @@ const MainComponent = () => {
       setShowSupplierOverlay(false);
     } catch (error) {
       console.error("Error updating supplier info: ", error);
-      // Ideally, inform the user of the error
+      // inform the user of the error
     }
   };
   
@@ -243,7 +245,6 @@ const MainComponent = () => {
 
     } catch (error) {
       console.error("Error updating card: ", error);
-      // Optionally, you could also log this error in your activities with a different message.
     }
   };
 
@@ -266,7 +267,7 @@ const MainComponent = () => {
 
   
   const handleEditClick = (event, card) => {
-    event.preventDefault(); // This is the correct usage of event.preventDefault
+    event.preventDefault(); 
     event.stopPropagation(); // Stops the click from reaching higher elements
     setEditingCard(card);
     setShowEditItemOverlay(true);
@@ -313,7 +314,7 @@ const MainComponent = () => {
     
       <div className="card-container">
   {filteredCards.map((card) => {
-    // Now use the getCardClass function to determine the class for each card
+    //getCardClass function to determine the class for each card
     const cardClass = getCardClass(card.amount, card.minimum);
 
     return (
@@ -362,7 +363,6 @@ const MainComponent = () => {
       <div className="supplierOverlay">
         {editingCard && editingCard.supplierInfo ? (
           <div className="supplier-content">
-            {/* Inputs and buttons for editing supplier info */}
             <input type="text" value={editingCard.supplierInfo.name || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, name: e.target.value } })} placeholder="Supplier Name" />
             <input type="text" value={editingCard.supplierInfo.contact || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, contact: e.target.value } })} placeholder="Supplier Contact" />
             <input type="email" value={editingCard.supplierInfo.email || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, email: e.target.value } })} placeholder="Supplier Email" />

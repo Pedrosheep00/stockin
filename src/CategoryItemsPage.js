@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { firestore } from './firebase'; // Adjust this import path as needed
-import './CSSs/CategoryItemsPage.css'; // Ensure the path to your CSS file is correct
+import { firestore } from './firebase';
+import './CSSs/CategoryItemsPage.css';
 
 const CategoryItemsPage = () => {
   const { categoryName } = useParams();
   const [items, setItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null); // State for the selected item
+  const [selectedItem, setSelectedItem] = useState(null); // selected item
 
   useEffect(() => {
     fetchItems();

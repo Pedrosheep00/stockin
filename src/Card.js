@@ -1,6 +1,6 @@
-// Card.js
+// This component is a card that displays the name, amount, and minimum of an item.
 import React from 'react';
-import './CSSs/Card.css'; // Make sure to create this CSS file
+import './CSSs/Card.css'; 
 
 const Card = ({ item }) => {
   return (

@@ -5,6 +5,7 @@ import { query, collection, where, getDocs } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase';
 
+// InventoryBarGraph component
 
 const InventoryBarGraph = () => {
   const [user] = useAuthState(auth);

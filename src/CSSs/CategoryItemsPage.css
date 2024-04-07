@@ -60,7 +60,6 @@ h2 {
   font-weight: lighter;
 }
 
-/* Add the color-coded background classes here, similar to those in MainContent.css if needed */
 .card-normal { background-color: #F6FFF8; }
 .card-warning { background-color: rgba(255, 255, 0, 0.675); color:#597569;}
 .card-danger { background-color: rgba(255, 89, 89, 0.727); color: #597569; }
@@ -72,7 +71,7 @@ h2 {
   }
 
   .card {
-    width: 90%; /* Full width on smaller screens */
+    width: 90%; 
   }
 }
 
@@ -105,8 +104,8 @@ h2 {
 .category-overlay .category-card-info-content img {
   width: 100%; /* Ensure the image does not exceed the width of its container */
   max-height: 300px; /* Adjust this value to manage the image's height */
-  object-fit: contain; /* This will make sure the image is scaled properly within its box */
-  margin-bottom: 20px; /* Optional: Adds some space below the image */
+  object-fit: contain; /*make sure the image is scaled properly within its box */
+  margin-bottom: 20px; /*Adds some space below the image */
 }
 
 .delete-category-button {

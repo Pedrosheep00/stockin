@@ -62,7 +62,7 @@ const Dashboard = () => {
         collection(firestore, "activities"),
         where("userId", "==", user.uid),
         orderBy("timestamp", "desc"),
-        limit(10) // Get the last 4 activities
+        limit(10) // Get the last 10 activities
       );
 
       try {

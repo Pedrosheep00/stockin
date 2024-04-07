@@ -233,8 +233,7 @@ input[type="file"], input[type="text"], input[type="number"], select {
 .delete-button {
   background-color: rgb(239, 92, 92);
   color: white;
-  border: none; /* Assuming you don’t want a border */
-  /* Add more styling as needed */
+  border: none; 
 }
 
 .card-normal {
@@ -275,7 +274,7 @@ input[type="file"], input[type="text"], input[type="number"], select {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem; /* Adjust the gap to suit your design */
+  gap: 2rem; 
   width: 100%;
 }
 
@@ -375,13 +374,14 @@ input:checked + .slider:before {
   z-index: 1001; /* Above the overlay background */
 }
 
-/* Optional: style for the input fields inside the supplier content */
+
 .supplier-content input {
   width: 100%; /* Full width */
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  
 }
 
 /* Style for the save button */

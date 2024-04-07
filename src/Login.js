@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from './firebase'; // Adjust the import path as necessary
+import { auth } from './firebase'; 
 import './CSSs/Login.css'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
