@@ -28,11 +28,11 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 200px;
   margin: 10px;
+  height: 80vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: auto;
   transition: transform 0.3s ease;
 }
 
@@ -43,7 +43,7 @@ body {
 
 .image-placeholder {
   width: 100%;
-  height: 250px;
+  height: 70%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +82,7 @@ body {
   font-weight: bold;
   font-size: 1rem;
   margin-top: 10vh;
-  margin-bottom: 7rem;
+  margin-bottom: 5.5rem;
   margin-right: auto;
   transition: background-color 0.3s ease;
   margin-left: 15vh;
@@ -159,29 +159,26 @@ input[type="file"], input[type="text"], input[type="number"], select {
 
 .card-info-content {
   background-color: #F6FFF8;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 80%;
-  max-width: 500px;
+  max-width: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  max-height: 80vh;
 }
 
-.card-info-header{
+.card-info-header {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  margin-bottom: 20px;
-  color: #597569;
-  text-transform: uppercase;
 }
 
 .close-overlay {
-  margin-left: auto;
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -189,27 +186,37 @@ input[type="file"], input[type="text"], input[type="number"], select {
   color: #597569;
 }
 
-
 .card-info-image {
-  max-width: 100%; /* Ensures the image does not exceed the width of its container */
-  max-height: 200px; /* Adjust this value to set the maximum height */
-  margin-bottom: 20px;
+  width: auto;
+  max-height: 20vh;
+  object-fit: contain; /* Ensures the image is scaled properly */
+  border-radius: 5px; /* Rounded corners for the image */
 }
 
-.card-info-details p {
-  margin: 5px 0;
-  color: #597569; /* You can adjust the color as needed */
+.card-info-details {
+  width: 100%;
+  text-align: flex start;
+  margin-left: 25vh;
 }
 
 .card-info-actions {
-  width: 100%;
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  margin-right: 15vh
+}
+
+.info-action-button{
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  flex-grow: 1; /* Buttons expand to fill the space */
 }
 
 .info-action-button:hover {
-  background-color: red;
+  background-color: #455A64; /* Darker shade for hover */
 }
 
 .card-actions {
@@ -264,52 +271,136 @@ input[type="file"], input[type="text"], input[type="number"], select {
   }
   
 }
-
 .control-panel {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 2rem; /* Adjust the gap to suit your design */
   width: 100%;
-  }
-
-.search-and-filter {
-  display: flex;
-  align-items: center;
 }
 
 .search-bar-container {
-  flex-grow: 3; /* Allows the search bar container to take up more space */
-  display: flex;
-  justify-content: center; /* Center the search bar */
+  flex-grow: 1; /* Allows the search bar container to grow */
 }
 
 .search-bar {
-  width: 100%; /* Use full width of its container */
-  max-width: 500px; /* Set a max-width so it doesn't get too large */
+  width: calc(100% - 2rem); /* Subtract padding from the width */
   padding: 10px 15px;
   border-radius: 5px;
   border: 1px solid #597569;
   font-size: 1rem;
+  margin-top: 3vh;
 }
 
-.low-stock-checkbox {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center the checkbox horizontally */
-  flex-grow: 1; /* Allows this container to take up space as well */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
-input[type='checkbox'] {
-  -webkit-transform: scale(1.5);
-  -moz-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  -o-transform: scale(1.5);
-  transform: scale(1.5);
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.low-stock-checkbox label {
+.slider {
+  position: absolute;
   cursor: pointer;
-  font-size: 1rem;  
-  margin-bottom: 3.8vh;
-  margin-left: -13vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.supplierOverlay {
+  position: fixed; /* Stay in place */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  z-index: 1100; /* Set the z-index higher than the card info overlay */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.supplier-content {
+  background: #fff; /* White background */
+  padding: 6vh;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a shadow */
+  width: 80%;
+  max-width: 500px; /* Max width of the supplier content area */
+  z-index: 1001; /* Above the overlay background */
+}
+
+/* Optional: style for the input fields inside the supplier content */
+.supplier-content input {
+  width: 100%; /* Full width */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the save button */
+.supplier-content button {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Hover effect for buttons */
+.supplier-content button:hover {
+  opacity: 0.8;
+}
+
+/* Style for the close button */
+.supplier-content button.close-button {
+  background-color: #f44336; /* Red */
 }

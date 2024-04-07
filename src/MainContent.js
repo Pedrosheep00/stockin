@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { auth, firestore, storage } from './firebase';
-import {
-  collection,
-  query,
-  where,
-  addDoc,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc
-} from 'firebase/firestore';
+import { collection, query, where, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './CSSs/MainContent.css';
 
@@ -20,7 +11,15 @@ const MainComponent = () => {
     name: '',
     amount: '',
     minimum: '',
-    category: ''
+    category: '',
+    supplierInfo: {
+      name: '',
+      contact: '',
+      email: '',
+      description: '',
+      sellingPrice: '',
+      buyingPrice: '',
+    },
   });
   const [showAddItemOverlay, setShowAddItemOverlay] = useState(false);
   const [showCardInfoOverlay, setShowCardInfoOverlay] = useState(false);
@@ -28,9 +27,11 @@ const MainComponent = () => {
   const [user, setUser] = useState(null);
   const [categories, setCategories] = useState([]);
   const [showEditItemOverlay, setShowEditItemOverlay] = useState(false);
-  const [editingCard, setEditingCard] = useState(null);
+  const [editingCard, setEditingCard] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [lowStockOnly, setLowStockOnly] = useState(false);
+  const [showSupplierOverlay, setShowSupplierOverlay] = useState(false);
+  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -40,7 +41,6 @@ const MainComponent = () => {
         await fetchCategories(user.uid);
       }
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -56,6 +56,33 @@ const MainComponent = () => {
     setCategories(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
   };
 
+  const handleAddCard = async (event) => {
+    event.preventDefault();
+    if (!newCardData.name || !newCardData.amount || !newCardData.imageUrl || !user  || !newCardData.minimum) {
+      alert('Please fill in all fields and select a category before submitting.');
+      return;
+    }
+
+    const userId = auth.currentUser.uid;
+    const newItem = {
+      ...newCardData,
+      userId,
+      sellingPrice: parseFloat(newCardData.sellingPrice),
+      buyingPrice: parseFloat(newCardData.buyingPrice),
+    };
+
+    try {
+      const docRef = await addDoc(collection(firestore, 'cards'), newItem);
+      setCards([...cards, { id: docRef.id, ...newItem }]);
+      setNewCardData({ imageUrl: '', name: '', amount: '', minimum: '', category: '', supplierInfo: { name: '', contact: '', email: '', description: '', sellingPrice: '', buyingPrice: '' } }); // Reset form
+      setShowAddItemOverlay(false); // Close overlay
+      logActivity('Item Added', `Added ${newItem.amount} units of ${newItem.name}`);
+
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
   const handleLowStockChange = (e) => setLowStockOnly(e.target.checked);
 
@@ -66,12 +93,20 @@ const MainComponent = () => {
   });
 
   const handleDeleteCard = async (cardId) => {
-      if (window.confirm("Are you sure you want to delete this item?")) {
+    const cardToDelete = cards.find(card => card.id === cardId);
+    if (cardToDelete && window.confirm("Are you sure you want to delete this item?")) {
+      try {
         const cardDocRef = doc(firestore, "cards", cardId);
         await deleteDoc(cardDocRef);
         setCards(cards.filter((card) => card.id !== cardId));
+        logActivity('Item Deleted', `Deleted ${cardToDelete.amount} units of ${cardToDelete.name}`);
+      } catch (error) {
+        console.error("Error deleting card: ", error);
+        // Optionally, log this error in your activities.
       }
+    }
   };
+  
 
 
   const handleFileChange = async (event) => {
@@ -116,50 +151,102 @@ const MainComponent = () => {
     }));
   };
 
- 
-
-  const handleAddCard = async (event) => {
-    event.preventDefault();
-    if (!newCardData.name || !newCardData.amount || !newCardData.imageUrl || !user || !newCardData.category || !newCardData.minimum) {
-      alert('Please fill in all fields and select a category before submitting.');
-      return;
+  const handleShowSupplier = (cardId) => {
+    const foundCard = cards.find(card => card.id === cardId);
+    if (foundCard) {
+      // Initialize supplierInfo if it doesn't exist
+      if (!foundCard.supplierInfo) {
+        foundCard.supplierInfo = {
+          name: '',
+          contact: '',
+          email: '',
+          description: '',
+        };
+      }
+      setEditingCard(foundCard);
+      setShowSupplierOverlay(true);
+    } else {
+      console.error("Card not found");
     }
-
-    const docRef = await addDoc(collection(firestore, 'cards'), {
-      name: newCardData.name,
-      amount: Number(newCardData.amount),
-      imageUrl: newCardData.imageUrl,
-      category: newCardData.category,
-      minimum: Number(newCardData.minimum),
-      userId: user.uid
-    });
-
-    setCards(prevCards => [...prevCards, { id: docRef.id, ...newCardData }]);
-    setNewCardData({ imageUrl: '', name: '', amount: '', category: '', minimum:'' }); // Reset the form
-    setShowAddItemOverlay(false);
   };
-
-  const handleEditCardSubmit = async (event) => {
-    event.preventDefault();
-    if (editingCard) {
+  const logActivity = async (action, detail) => {
+    if (user) {
+      const activity = {
+        action: action,
+        detail: detail,
+        timestamp: new Date(), // Firestore will convert this to a Timestamp
+        userId: user.uid,
+      };
       try {
-        const cardRef = doc(firestore, "cards", editingCard.id);
-        await updateDoc(cardRef, {
-          name: editingCard.name,
-          amount: Number(editingCard.amount),
-          minimum: Number(editingCard.minimum),
-          category: editingCard.category,
-          imageUrl: editingCard.imageUrl,
-        });
-        const updatedCards = cards.map(card => card.id === editingCard.id ? {...editingCard} : card);
-        setCards(updatedCards);
-        setShowEditItemOverlay(false);
-        setEditingCard(null); // Reset editing card
+        await addDoc(collection(firestore, "activities"), activity);
       } catch (error) {
-        console.error("Error updating document: ", error);
+        console.error("Error logging activity: ", error);
       }
     }
   };
+
+  const handleSaveSupplierInfo = async () => {
+    if (!editingCard) return; // Make sure you have a card selected for editing
+  
+    // Construct the updated supplier info object from your form state or refs
+    const updatedSupplierInfo = {
+      name: editingCard.supplierInfo.name,
+      contact: editingCard.supplierInfo.contact,
+      email: editingCard.supplierInfo.email,
+      description: editingCard.supplierInfo.description,
+    };
+  
+    try {
+      // Update Firestore document
+      const cardRef = doc(firestore, 'cards', editingCard.id);
+      await updateDoc(cardRef, {
+        ...editingCard, // Keep the rest of the card data
+        supplierInfo: updatedSupplierInfo, // Set the new supplier info
+      });
+  
+      // Update local state
+      setCards(cards.map((card) => (card.id === editingCard.id ? { ...card, supplierInfo: updatedSupplierInfo } : card)));
+  
+      // Close the supplier info overlay
+      setShowSupplierOverlay(false);
+    } catch (error) {
+      console.error("Error updating supplier info: ", error);
+      // Ideally, inform the user of the error
+    }
+  };
+  
+
+  const handleEditCardSubmit = async (event) => {
+    event.preventDefault();
+    if (!editingCard) return;
+
+    // Ensure supplier info is part of the editing process
+    const cardUpdateData = {
+      name: editingCard.name,
+      amount: editingCard.amount,
+      minimum: editingCard.minimum,
+      category: editingCard.category,
+      imageUrl: editingCard.imageUrl,
+      sellingPrice: parseFloat(editingCard.sellingPrice),
+      buyingPrice: parseFloat(editingCard.buyingPrice),
+      // Ensure supplier info is included in updates
+      supplierInfo: editingCard.supplierInfo || {}, // Default to an empty object if not set
+    };
+
+    try {
+      await updateDoc(doc(firestore, "cards", editingCard.id), cardUpdateData);
+      const updatedCards = cards.map(card => card.id === editingCard.id ? { ...card, ...cardUpdateData } : card);
+      setCards(updatedCards);
+      setShowEditItemOverlay(false); // Close the edit overlay
+      // Log the edit action
+      logActivity('Item Edited', `Edited ${editingCard.amount} units of ${editingCard.name}`);
+
+    } catch (error) {
+      console.error("Error updating card: ", error);
+      // Optionally, you could also log this error in your activities with a different message.
+    }
+  };
+
 
   const getCardClass = (amount, minimum) => {
     if (amount < minimum) return 'card card-danger';
@@ -190,32 +277,38 @@ const MainComponent = () => {
     // Make sure to hide the card info overlay if it's open
     setShowCardInfoOverlay(false);
   };
+
+  
+
   return (
     <div className="main-container">
       
+      
       <div className="control-panel">
-        <button className="add-item-button" onClick={() => setShowAddItemOverlay(true)}>Add Item</button>
+  <button className="add-item-button" onClick={() => setShowAddItemOverlay(true)}>Add Item</button>
 
-        <div className="search-bar-container">
-          <input
-            type="text"
-            placeholder="Search items..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="search-bar"
-          />
-        </div>
+  <label className="switch">
+    <input
+      type="checkbox"
+      id="low-stock-checkbox"
+      checked={lowStockOnly}
+      onChange={handleLowStockChange}
+    />
+    <span className="slider round"></span>
+  </label>
+  <label htmlFor="low-stock-checkbox" className="low-stock-label">Low Stock</label>
+  
+  <div className="search-bar-container">
+    <input
+      type="text"
+      placeholder="Search items..."
+      value={searchTerm}
+      onChange={handleSearchChange}
+      className="search-bar"
+    />
+  </div>
+</div>
 
-        <div className="low-stock-checkbox">
-          <input
-            type="checkbox"
-            id="low-stock-checkbox"
-            checked={lowStockOnly}
-            onChange={handleLowStockChange}
-          />
-          <label htmlFor="low-stock-checkbox">Low Stock</label>
-        </div>
-      </div>
 
     
       <div className="card-container">
@@ -250,6 +343,8 @@ const MainComponent = () => {
               <input type="text" placeholder="Name" name="name" value={newCardData.name} onChange={handleInputChange} />
               <input type="number" placeholder="Amount" name="amount" value={newCardData.amount} onChange={handleInputChange} />
               <input type="number" placeholder="Minimum Amount" name="minimum" value={newCardData.minimum} onChange={handleInputChange} />
+              <input type="number" placeholder="Selling Price"name="sellingPrice" value={newCardData.sellingPrice}onChange={handleInputChange}/>
+              <input type="number" placeholder="Buying Price"name="buyingPrice" value={newCardData.buyingPrice}onChange={handleInputChange}/>
               <select name="category" value={newCardData.category} onChange={handleInputChange}>
                 <option value="">Select a category</option>
                 {categories.map((cat) => (
@@ -263,7 +358,21 @@ const MainComponent = () => {
         </div>
       )}
   
-      
+    {showSupplierOverlay && (
+      <div className="supplierOverlay">
+        {editingCard && editingCard.supplierInfo ? (
+          <div className="supplier-content">
+            {/* Inputs and buttons for editing supplier info */}
+            <input type="text" value={editingCard.supplierInfo.name || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, name: e.target.value } })} placeholder="Supplier Name" />
+            <input type="text" value={editingCard.supplierInfo.contact || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, contact: e.target.value } })} placeholder="Supplier Contact" />
+            <input type="email" value={editingCard.supplierInfo.email || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, email: e.target.value } })} placeholder="Supplier Email" />
+            <textarea value={editingCard.supplierInfo.description || ''} onChange={(e) => setEditingCard({ ...editingCard, supplierInfo: { ...editingCard.supplierInfo, description: e.target.value } })} placeholder="Supplier Description"></textarea>
+            <button onClick={handleSaveSupplierInfo}>Save Supplier Info</button>
+            <button onClick={() => setShowSupplierOverlay(false)}>Close</button>
+          </div>
+        ) : <p>Loading...</p>}
+      </div>
+    )}      
   
       {showCardInfoOverlay && selectedCard && (
         <div className="overlayCardInfo">
@@ -280,9 +389,8 @@ const MainComponent = () => {
               <p><strong>Item ID:</strong> {selectedCard.id}</p>
             </div>
             <div className="card-info-actions">
-              <button className="info-action-button">Supplier</button>
-              <button className="info-action-button">Dashboard</button>
-            </div>
+              <button className="info-action-button" onClick={() => handleShowSupplier(selectedCard.id)}>Supplier</button>
+            </div>           
           </div>
         </div>
       )}
@@ -294,6 +402,8 @@ const MainComponent = () => {
                   <input type="text" name="name" value={editingCard.name} onChange={handleEditInputChange} placeholder="Name" />
                   <input type="number" name="amount" value={editingCard.amount} onChange={handleEditInputChange} placeholder="Amount" />
                   <input type="number" name="minimum" value={editingCard.minimum} onChange={handleEditInputChange} placeholder="Minimum Amount" />
+                  <input type="number" name="sellingPrice" value={editingCard.sellingPrice} onChange={handleEditInputChange} placeholder="Selling Price" /> 
+                  <input type="number" name="buyingPrice" value={editingCard.buyingPrice} onChange={handleEditInputChange} placeholder="Buying Price" />
                   <br></br>
                   <select name="category" value={editingCard.category} onChange={handleEditInputChange}>
                     <option value="">Select a category</option>

@@ -1,49 +1,13 @@
-// NEXT - to do 
-
-        
-    - Supplier button 
-        - add supplier name 
-        - supplier form of contact
-        - supplier method of ordering 
-
-    - DASHBOARD 
-        - think about the scheme 
-        - what data to display?
-        - how can it be useful for the user 
+// NEXT - to do      
    
-
     - add a link to forgot your password linked to the email address.    
 
-    - fix buttons in the login and register pages (list bar)
-    
-
-    - add delete button to the card info overlay and edit.
-
-    - adjust the OnClick event, to open a info overlay for the items, in the Categ. page 
-
-        - (TO CONSIDER )
-        - Add buying price and selling price scheme  
-        - STAFF CONTROL 
-    
     - cookies for the page
-
-    - About us page 
-        - to finish and reorganize the draft.
-        - create the js and css pages .
-        - link them in the propper links.
 
     - contact the server(me) (CONTACT page)
 
-    - - adjust FrontPage with all the recently added feautures before uploading
 
-    - adjust the CategoryItemsPage to be functional
-        - edit buttons
-        - colour coding
-        - add item 
-        - delete item 
-        - search engine 
-
-    //-------------Done:--------------------------
+   //-------------Done:--------------------------
 
     - adjust (in the FrontPage) the button (Register) and the link (Inventory) to apper if the user is logged in or not
 
@@ -55,3 +19,28 @@
         - info buttons
 
     - add a button to delete one category
+
+    - Supplier button 
+        - add supplier name 
+        - supplier form of contact
+        - supplier method of ordering     
+
+    - DASHBOARD 
+        - think about the scheme 
+        - what data to display?
+        - how can it be useful for the user
+        - Add buying price and selling price scheme  
+        - how many items
+        - how many categories  
+
+     DASHBOARD - to add recent activities and graphs
+
+    - About us page 
+        - to finish and reorganize the draft.
+        - create the js and css pages .
+        - link them in the propper links.
+
+        
+    - adjust FrontPage with all the recently added feautures before uploading
+
+   

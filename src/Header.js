@@ -49,12 +49,12 @@ function Header() {
       />
       <div className={`overlay ${overlayVisible ? 'visible' : ''}`}>
         <ul>
-          <li><Link to="/" onClick={() => setOverlayVisible(false)}>Dashboard</Link></li>
-          <li><Link to="/about" onClick={() => setOverlayVisible(false)}>Staff</Link></li>
-          <li><Link to="/categories" onClick={() => setOverlayVisible(false)}>Categories</Link></li>
-          <li><Link to="/contact" onClick={() => setOverlayVisible(false)}>Insights</Link></li>
-          <li><Link to="/settings" onClick={() => setOverlayVisible(false)}>Settings</Link></li>
+           <li><Link to="/home" onClick={() => setOverlayVisible(false)}>Inventory</Link></li>
+           <li><Link to="/categories" onClick={() => setOverlayVisible(false)}>Categories</Link></li>     
+          <li><Link to="/dashboard" onClick={() => setOverlayVisible(false)}>Dashboard</Link></li>
+          <li><Link to="/about" onClick={() => setOverlayVisible(false)}>About</Link></li>               
           <li><button className="sign-out" onClick={handleLogout}>Log Out</button></li>
+          
         </ul>
       </div>
       
@@ -67,8 +67,7 @@ function Header() {
       <nav>
         <ul>
           <li><Link to="/" className={isFrontPage ? 'home-link-frontpage' : 'home-link'}>Home</Link></li>
-          <li><Link to="/about" className='home-link'>About</Link></li>
-          <li><Link to="/contact" className='home-link'>Contact</Link></li>
+          <li><Link to="/dashboard" className='home-link home-link-red'>Dashboard</Link></li>
           <li><Link to="/home" className='home-link home-link-red'>Inventory</Link></li>
 
         </ul>
