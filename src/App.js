@@ -12,6 +12,8 @@ import Register from './Register';
 import ProfilePage from './ProfilePage';
 import Dashboard from './Dashboard';
 import About from './About';
+import CookieConsent from './CookieConsent'; 
+
 
 function App() {
   const location = useLocation();
@@ -21,6 +23,7 @@ function App() {
   return (
     <div className="App">
       {showHeaderFooter && <Header />}
+      <CookieConsent /> {/* Display the cookie consent banner */}
       <Routes>
         
         <Route path="/" element={<FrontPage />} />

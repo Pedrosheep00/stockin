@@ -1,18 +1,11 @@
 // NEXT - to do      
    
     - add a link to forgot your password linked to the email address.    
-
-    - cookies for the page
+  
 
     - contact the server(me) (CONTACT page)
 
-    - ReadMe Page
-
-    - Oragize the coments in each page, and add to the ReadMefile
-        - the way AI was used during the development of each page, if not in an overall. 
-        - things to be added to the "Final Document":
-               - to coment and reorganize everything that was done in the Report13.txt
-               - organize the information better and explain it all.
+    
     
     
    //-------------Done:--------------------------
@@ -54,3 +47,16 @@
     - - populate page
         login: example1@gmail.com
         password: example321
+
+    
+    - ReadMe Page
+
+    - Oragize the coments in each page, and add to the ReadMefile
+        - the way AI was used during the development of each page, if not in an overall. 
+        - things to be added to the "Final Document":
+               - to coment and reorganize everything that was done in the Report13.txt
+               - organize the information better and explain it all.
+
+    -  - cookies for the page added
+
+    --ReadMe (talk about Copilot)
