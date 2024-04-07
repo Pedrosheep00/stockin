@@ -6,6 +6,8 @@
 
     - contact the server(me) (CONTACT page)
 
+    - ReadMe Page
+
 
    //-------------Done:--------------------------
 
@@ -43,4 +45,6 @@
         
     - adjust FrontPage with all the recently added feautures before uploading
 
-   
+    - - populate page
+        login: example1@gmail.com
+        password: example321
