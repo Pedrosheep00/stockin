@@ -8,6 +8,7 @@ import featureImage1 from './assets/feat1.png';
 import featureImage2 from './assets/feat2.png';
 import featureImage3 from './assets/feat3.png';
 import featureImage4 from './assets/feat4.png';
+import featureImage5 from './assets/feat5.png';
 
 
 const FrontPage = () => {
@@ -39,8 +40,8 @@ const FrontPage = () => {
           <h3>The inventory management tool indicated for those small businesses and start-ups.</h3>
         </div>
         <div className="feature-card">
-          <h3>Every information about your items/products in just ONE CLICK</h3>
-          <img src={featureImage2} alt="Feature 2" />
+          <h3>Visually dinamic DASHBOARD, a place where you can trcak your onventory numbers without much thinking. Track your Total inventory values, Profit Growth Margin and many other finance related data</h3>
+          <img src={featureImage5} alt="Feature 5" />
         </div>
         <div className="feature-card">
           <img src={featureImage3} alt="Feature 3" />
@@ -49,6 +50,11 @@ const FrontPage = () => {
         <div className="feature-card">
           <h3>Only show the Low Stock items could be very useful when Restocking or making orders</h3>
           <img src={featureImage4} alt="Feature 4" />
+        </div>
+        <div className="feature-card">
+          <img src={featureImage2} alt="Feature 2" />
+          <h3>Every information about your items/products in just ONE CLICK</h3>
+    
         </div>
         
           <Link to="/register" className="register-button-link2">

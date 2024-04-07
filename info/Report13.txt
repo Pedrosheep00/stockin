@@ -1,18 +1,11 @@
 // NEXT - to do      
-    DASHBOARD - to add recent activities and graphs
-
+   
     - add a link to forgot your password linked to the email address.    
 
     - cookies for the page
 
-    - About us page 
-        - to finish and reorganize the draft.
-        - create the js and css pages .
-        - link them in the propper links.
-
     - contact the server(me) (CONTACT page)
 
-    - adjust FrontPage with all the recently added feautures before uploading
 
    //-------------Done:--------------------------
 
@@ -40,5 +33,14 @@
         - how many items
         - how many categories  
 
+     DASHBOARD - to add recent activities and graphs
+
+    - About us page 
+        - to finish and reorganize the draft.
+        - create the js and css pages .
+        - link them in the propper links.
+
+        
+    - adjust FrontPage with all the recently added feautures before uploading
 
    

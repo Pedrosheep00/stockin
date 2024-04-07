@@ -390,7 +390,6 @@ const MainComponent = () => {
             </div>
             <div className="card-info-actions">
               <button className="info-action-button" onClick={() => handleShowSupplier(selectedCard.id)}>Supplier</button>
-              <button className="info-action-button">Dashboard</button> 
             </div>           
           </div>
         </div>
